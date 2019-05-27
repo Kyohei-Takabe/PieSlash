@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Charactor : MonoBehaviour
 {
-    public Pie pie;
+    public GameObject pie;
 
     public virtual void Start()
     {
@@ -31,7 +31,10 @@ public class Charactor : MonoBehaviour
         //print(newPie.transform.position);
         //print(Y_angle);
 
-        newPie.thrown(100*direction);
+        var rig = newPie.GetComponent<Rigidbody>();
+        rig.AddForce(100 * direction);
+        //newPie.thrown(100*direction);
+        Destroy(newPie,5.0f);
 
     }
 }

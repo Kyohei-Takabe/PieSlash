@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Pie
+  - Cream
   layers:
   - Default
   - TransparentFX

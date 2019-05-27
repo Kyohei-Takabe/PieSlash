@@ -7,14 +7,18 @@ public class Player : Charactor
     //Cameraを格納
     public GameObject Camera;
 
+    private GameObject Cream;
+
     public float speed;
     //player,cameraのtransformを持つ
     Rigidbody rig;
+    MeshRenderer mesh;
     // Use this for initialization
     public override void Start()
     {
         rig = GetComponent<Rigidbody>();
-
+        Cream = transform.Find("Cream").gameObject;
+        mesh = Cream.GetComponent<MeshRenderer>();
 
         //Camera = transform.Find("PlayerCamera").gameObject;
     }
@@ -65,7 +69,17 @@ public class Player : Charactor
         {
             throwPie();
         }
-
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Pie")
+        {
+
+            //print("Hit");
+            mesh.enabled = true;
+            Destroy(collision.gameObject);
+        }
+
+    }
 }

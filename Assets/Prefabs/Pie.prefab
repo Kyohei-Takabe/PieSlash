@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5798240830304171391}
   - component: {fileID: 5024168154934705264}
   - component: {fileID: 6895833907981373949}
-  - component: {fileID: 5697054079409730401}
   m_Layer: 0
   m_Name: Pie
   m_TagString: Pie
@@ -110,15 +109,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5697054079409730401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6561914807635506972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6ffd8d3da8064253b2f045912792cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

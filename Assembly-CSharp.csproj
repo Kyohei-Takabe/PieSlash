@@ -63,7 +63,6 @@
     <Compile Include="Assets\Scripts\Charactor\Charactor.cs" />
     <Compile Include="Assets\Scripts\Charactor\Enemy.cs" />
     <Compile Include="Assets\Scripts\Charactor\Player.cs" />
-    <Compile Include="Assets\Scripts\Pie\Pie.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/takabekyouhei/MyActivity/MyWorks/Unityproject/university/PieSlash/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
