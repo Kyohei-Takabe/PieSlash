@@ -9,6 +9,7 @@ public class Charactor : MonoBehaviour
     public virtual void Start()
     {
         //pie = gameObject.AddComponent<Pie>() as Pie;
+
     }
 
     public void Move(float speed, Vector3 direction)
@@ -34,7 +35,8 @@ public class Charactor : MonoBehaviour
         var rig = newPie.GetComponent<Rigidbody>();
         rig.AddForce(100 * direction);
         //newPie.thrown(100*direction);
-        Destroy(newPie,5.0f);
+        Destroy(newPie, 5.0f);
 
     }
+
 }

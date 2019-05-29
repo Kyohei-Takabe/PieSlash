@@ -6,20 +6,23 @@ public class Player : Charactor
 {
     //Cameraを格納
     public GameObject Camera;
+    MeshRenderer mesh;
+    GameObject Cream;
 
-    private GameObject Cream;
 
     public float speed;
     //player,cameraのtransformを持つ
     Rigidbody rig;
-    MeshRenderer mesh;
+
+    public AudioClip hitSound;
+    public AudioClip washSound;
     // Use this for initialization
     public override void Start()
     {
         rig = GetComponent<Rigidbody>();
         Cream = transform.Find("Cream").gameObject;
         mesh = Cream.GetComponent<MeshRenderer>();
-
+        mesh.enabled = false;
         //Camera = transform.Find("PlayerCamera").gameObject;
     }
 
@@ -79,7 +82,15 @@ public class Player : Charactor
             //print("Hit");
             mesh.enabled = true;
             Destroy(collision.gameObject);
+            AudioSource.PlayClipAtPoint(hitSound, transform.position);
+        }
+
+        if (collision.gameObject.tag == "River")
+        {
+            mesh.enabled = false;
+            AudioSource.PlayClipAtPoint(washSound, transform.position);
         }
 
     }
+
 }
