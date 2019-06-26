@@ -168,25 +168,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
-      propertyPath: m_modelOculusTouchQuestAndRiftSRightController
-      value: 
-      objectReference: {fileID: 141912408}
-    - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
-      propertyPath: m_modelOculusTouchQuestAndRiftSLeftController
-      value: 
-      objectReference: {fileID: 41155491}
-    - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controller
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
+      propertyPath: m_modelOculusTouchQuestAndRiftSRightController
+      value: 
+      objectReference: {fileID: 8866756304201149358, guid: 78505a9abca3e40aa8764a2b087a8617,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
---- !u!1 &41155491 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4824892073124190735, guid: d9809c5e8418bb047bf2c8ba1d1a2cec,
-    type: 3}
-  m_PrefabInstance: {fileID: 41155490}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &51600975
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,12 +266,6 @@ Transform:
   m_Father: {fileID: 1481908753}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &141912408 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6006481682082627338, guid: d9809c5e8418bb047bf2c8ba1d1a2cec,
-    type: 3}
-  m_PrefabInstance: {fileID: 41155490}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,12 +335,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &235375729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4824892073124190735, guid: d9809c5e8418bb047bf2c8ba1d1a2cec,
-    type: 3}
-  m_PrefabInstance: {fileID: 932361004}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &329904015
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,11 +677,8 @@ PrefabInstance:
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_modelOculusTouchQuestAndRiftSLeftController
       value: 
-      objectReference: {fileID: 235375729}
-    - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
-      propertyPath: m_modelOculusTouchQuestAndRiftSRightController
-      value: 
-      objectReference: {fileID: 932361005}
+      objectReference: {fileID: 6281898222030252611, guid: 33a5f78affb704468a76ada72360a517,
+        type: 3}
     - target: {fileID: 11479374, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
       propertyPath: m_controller
       value: 16777216
@@ -755,12 +731,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
---- !u!1 &932361005 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6006481682082627338, guid: d9809c5e8418bb047bf2c8ba1d1a2cec,
-    type: 3}
-  m_PrefabInstance: {fileID: 932361004}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &985037256
 GameObject:
   m_ObjectHideFlags: 0
