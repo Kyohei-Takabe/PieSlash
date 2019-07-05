@@ -1,0 +1,2 @@
+/Users/takabekyouhei/MyActivity/MyWorks/Unityproject/university/PieSlash/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
+/Users/takabekyouhei/MyActivity/MyWorks/Unityproject/university/PieSlash/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache

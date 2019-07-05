@@ -1,9 +1,13 @@
 ﻿<Properties StartupConfiguration="{2E7ABAC8-1942-B244-475F-70AB1016E12B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Charactor/Charactor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HandAncherController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Charactor/Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Charactor/Charactor.cs" Line="38" Column="26" />
-      <File FileName="Assets/Scripts/Charactor/Player.cs" Line="85" Column="29" />
+      <File FileName="Assets/Scripts/MathmaticsCulculater.cs" Line="242" Column="1" />
+      <File FileName="Assets/Scripts/Pie.cs" Line="33" Column="1" />
+      <File FileName="Assets/Scripts/InputManager.cs" Line="109" Column="2" />
+      <File FileName="Assets/Scripts/Charactor/Player.cs" Line="85" Column="1" />
+      <File FileName="Assets/Scripts/HandAncherController.cs" Line="25" Column="4" />
+      <File FileName="Assets/Scripts/PieGenerator.cs" Line="19" Column="3" />
+      <File FileName="Assets/Scripts/PieThrower.cs" Line="60" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
