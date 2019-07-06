@@ -5,19 +5,14 @@ using UnityEngine;
 //Pieを投げる機能を持ったクラス
 public class PieThrower : MonoBehaviour
 {
-	//現在から11フレーム前までの位置ベクトル
-	Vector3[] prePositions = new Vector3[11];
+
 	//速度ベクトルのうち信頼性の高いもの
 	List<Vector3> adoptedVelocity = new List<Vector3>();
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		//とりあえず0で初期化
-		for (int i = 0; i < prePositions.Length; i++)
-		{
-			prePositions[i] = Vector3.zero;
-		}
+
 	}
 
 	// Update is called once per frame
@@ -26,28 +21,16 @@ public class PieThrower : MonoBehaviour
 
 	}
 
-	//このクラスを利用するオブジェクトのpos情報をsetする
-	public void SetPosition(Vector3 lastFramePos)
-	{
-		for (int i = 1; i < prePositions.Length; i++)
-		{
-			prePositions[i] = prePositions[i - 1];
-		}
-
-		prePositions[0] = lastFramePos;
-	}
-
 	//pieを投げる関数
-	public void ThrowPie(GameObject pie)
+	public void ThrowPie(Pie pie, Vector3[] prePoses, float _speed)
 	{
-		Vector3 direction = CulculateDirection();
-		float speed = CulculateSpeed();
-		Pie pieScript = pie.GetComponent<Pie>();
-		pieScript.Throwed(direction, speed);
+		Vector3 direction = CulculateDirection(prePoses);
+		float speed = CulculateSpeed(prePoses,_speed);
+		pie.Throwed(direction, speed);
 	}
 
 	//妥当な速度ベクトルのみを抽出する
-	void ExtructedVelocity()
+	void ExtructedVelocity(Vector3[] prePositions)
 	{
 		//直近10フレームでの速度ベクトル
 		Vector3[] velocitys = new Vector3[10];
@@ -58,10 +41,10 @@ public class PieThrower : MonoBehaviour
 		List<float> highDeviation = new List<float>();
 
 		//前向きのベクトルだけをListにする 
-		for (int i = 0; i < velocitys.Length; i++)
+		for (int i = 0; i < velocitys.Length - 1; i++)
 		{
-			velocitys[i] = prePositions[i + 1] - prePositions[i];
-			if (Vector3.Dot(velocitys[i], velocitys[9]) > 0)
+			velocitys[i] = prePositions[i] - prePositions[i + 1];
+			if (Vector3.Dot(velocitys[i], prePositions[0]) > 0)
 			{
 				forwardVelocity.Add(velocitys[i]);
 			}
@@ -88,26 +71,30 @@ public class PieThrower : MonoBehaviour
 	}
 
 	//pieの飛んでく方向を計算する
-	Vector3 ThrowPieDirection()
+	Vector3 ThrowPieDirection(Vector3[] prePoses)
 	{
 		//妥当なベクトルの選定
-		ExtructedVelocity();
+		ExtructedVelocity(prePoses);
 		//MathmaticsCulculater.RowPathFilter();
+		//各ベクトルの最小二乗平面に最後のベクトルを射影したベクトル
 		Vector3 direction = MathmaticsCulculater.VectorProjectionToLeastSquaresPlane(adoptedVelocity);
+
+		//テストコード
+		//Vector3 direction = prePositions[0] - prePositions[1];
 		return direction;
 	}
 
 	//方向の計算
-	Vector3 CulculateDirection()
+	Vector3 CulculateDirection(Vector3[] prePoses)
 	{
-		Vector3 throwingVector = ThrowPieDirection();
+		Vector3 throwingVector = ThrowPieDirection(prePoses);
 		return throwingVector.normalized;
 	}
 
 	//速度の計算
-	float CulculateSpeed()
+	float CulculateSpeed(Vector3[] prePoses, float speed)
 	{
-		Vector3 throwingVector = ThrowPieDirection();
-		return throwingVector.magnitude;
+		Vector3 throwingVector = ThrowPieDirection(prePoses);
+		return throwingVector.magnitude * speed/ Time.deltaTime;
 	}
 }

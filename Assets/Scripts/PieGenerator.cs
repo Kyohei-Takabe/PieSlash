@@ -18,11 +18,21 @@ public class PieGenerator : MonoBehaviour
 
 	}
 
-	public GameObject Generate(Transform transform)
+	public GameObject Generate(Transform _transform, Hand hand)
 	{
-		Transform trans = transform;
-		Vector3 size = transform.localScale;
-		trans.position += size;
+		Transform trans = _transform;
+		//Vector3 size = _transform.localScale;
+
+		if (hand == Hand.right)
+		{
+			trans.Translate(-0.05f, 0, 0);
+		}
+		if (hand == Hand.left)
+		{
+			trans.Translate(0.05f, 0, 0);
+		}
+
+		trans.Rotate(new Vector3(0,0,90));
 
 		GameObject newPie = Instantiate(piePrefab, trans);
 		return newPie;
