@@ -28,8 +28,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2906586086311564497}
-  - {fileID: 1047496525274903451}
+  - {fileID: 6006481682082627337}
+  - {fileID: 6459496313383950727}
+  - {fileID: 3066694392524911879}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,13 +46,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed62bf3ae2456c408f247f96808ce96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_modelGearVrController: {fileID: 0}
-  m_modelOculusGoController: {fileID: 0}
-  m_modelOculusTouchQuestAndRiftSLeftController: {fileID: 1047496525274903529}
-  m_modelOculusTouchQuestAndRiftSRightController: {fileID: 2906586086311564512}
-  m_modelOculusTouchRiftLeftController: {fileID: 0}
-  m_modelOculusTouchRiftRightController: {fileID: 0}
+  m_modelGearVrController: {fileID: 1366392847369286250}
+  m_modelOculusGoController: {fileID: 1366392847369286250}
+  m_modelOculusTouchQuestAndRiftSLeftController: {fileID: 6459496313383950726}
+  m_modelOculusTouchQuestAndRiftSRightController: {fileID: 6006481682082627338}
+  m_modelOculusTouchRiftLeftController: {fileID: 1366392847369286250}
+  m_modelOculusTouchRiftRightController: {fileID: 1366392847369286250}
   m_controller: 33554432
+--- !u!1 &1366392847369286250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3066694392524911879}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3066694392524911879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366392847369286250}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 488160}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1047496525274903493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121,13 +152,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33a5f78affb704468a76ada72360a517, type: 3}
---- !u!1 &1047496525274903529 stripped
+--- !u!1 &6459496313383950726 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6281898222030252611, guid: 33a5f78affb704468a76ada72360a517,
     type: 3}
   m_PrefabInstance: {fileID: 1047496525274903493}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1047496525274903451 stripped
+--- !u!4 &6459496313383950727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6281898222030252610, guid: 33a5f78affb704468a76ada72360a517,
     type: 3}
@@ -207,13 +238,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78505a9abca3e40aa8764a2b087a8617, type: 3}
---- !u!1 &2906586086311564512 stripped
+--- !u!1 &6006481682082627338 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8866756304201149358, guid: 78505a9abca3e40aa8764a2b087a8617,
     type: 3}
   m_PrefabInstance: {fileID: 2906586086311564452}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2906586086311564497 stripped
+--- !u!4 &6006481682082627337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8866756304201149357, guid: 78505a9abca3e40aa8764a2b087a8617,
     type: 3}
