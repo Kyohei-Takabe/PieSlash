@@ -48,13 +48,13 @@ public class Player : MonoBehaviour
 		if (inputManager.CreatedR())
 		{
 			//右手アンカーの位置にパイを生成する関数
-			rightHand.CreatPie(Hand.right);
+			rightHand.CreatePie(Hand.right);
 		}
 
 		if (inputManager.CreatedL())
 		{
 			//左手アンカーの位置にパイを生成する関数
-			leftHand.CreatPie(Hand.left);
+			leftHand.CreatePie(Hand.left);
 		}
 
 		if (inputManager.HavingR())
@@ -64,15 +64,15 @@ public class Player : MonoBehaviour
 
 		if (inputManager.HavingL())
 		{
-			leftHand.HavingPie(Hand.left);
+			　leftHand.HavingPie(Hand.left);
 		}
 
-		if (inputManager.ThrowingR() && inputManager.CreatedR())
+		if (inputManager.ThrowingR())
 		{
 			rightHand.ThrowPie();
 		}
 
-		if (inputManager.ThrowingL() && inputManager.CreatedR())
+		if (inputManager.ThrowingL())
 		{
 			leftHand.ThrowPie();
 		}

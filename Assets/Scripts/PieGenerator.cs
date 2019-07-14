@@ -35,6 +35,7 @@ public class PieGenerator : MonoBehaviour
 		trans.Rotate(new Vector3(0,0,90));
 
 		GameObject newPie = Instantiate(piePrefab, trans);
+
 		return newPie;
 	}
 }

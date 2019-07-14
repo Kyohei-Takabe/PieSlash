@@ -43,8 +43,8 @@ public class PieThrower : MonoBehaviour
 		//前向きのベクトルだけをListにする 
 		for (int i = 0; i < velocitys.Length - 1; i++)
 		{
-			velocitys[i] = prePositions[i] - prePositions[i + 1];
-			if (Vector3.Dot(velocitys[i], prePositions[0]) > 0)
+			velocitys[i] = prePositions[i] - prePositions[i+1];
+			if (Vector3.Dot(velocitys[i], prePositions[0] - prePositions[velocitys.Length - 1]) > 0)
 			{
 				forwardVelocity.Add(velocitys[i]);
 			}

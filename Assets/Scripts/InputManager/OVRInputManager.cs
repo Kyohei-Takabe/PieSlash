@@ -35,30 +35,37 @@ public class OVRInputManager : InputManager
 		if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
 		{
 			Debug.Log("右人差し指トリガーを押したまま");
-			isHavingR = true;
+			if (isCreatedR){
+				isHavingR = true;
+				//isCreatedR = false;
+			}
 		}
 
 		if (OVRInput.Get(OVRInput.RawButton.LIndexTrigger))
 		{
-			isHavingL = true;
+			if(isCreatedL){
+				isHavingL = true;
+				//isCreatedL = false;
+			}
+
 		}
 
-		if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger) && isCreatedR)
+		if (OVRInput.GetUp(OVRInput.RawButton.RIndexTrigger) && isHavingR)
 		{
 			//右手の位置からパイを投げる
 			Debug.Log("右人差し指トリガーを離した");
 			isHavingR = false;
-			isThrowingR = true;
 			isCreatedR = false;
+			isThrowingR = true;
 		}
 
-		if (OVRInput.GetUp(OVRInput.RawButton.LIndexTrigger) && isCreatedL)
+		if (OVRInput.GetUp(OVRInput.RawButton.LIndexTrigger) && isHavingL)
 		{
 			//左手の位置からパイを投げる
 			Debug.Log("左人差し指トリガーを離した");
 			isHavingL = false;
-			isThrowingL = true;
 			isCreatedL = false;
+			isThrowingL = true;
 		}
 	}
 
