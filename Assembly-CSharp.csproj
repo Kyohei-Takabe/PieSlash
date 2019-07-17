@@ -60,11 +60,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Charactor\Charactor.cs" />
     <Compile Include="Assets\Scripts\Charactor\Damage.cs" />
-    <Compile Include="Assets\Scripts\Charactor\Enemy.cs" />
     <Compile Include="Assets\Scripts\Charactor\EnemyDamage.cs" />
-    <Compile Include="Assets\Scripts\Charactor\Player.cs" />
+    <Compile Include="Assets\Scripts\HandController.cs" />
+    <Compile Include="Assets\Scripts\InputManager\DebagInputManager.cs" />
+    <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
+    <Compile Include="Assets\Scripts\InputManager\OVRInputManager.cs" />
+    <Compile Include="Assets\Scripts\Mathmatic\MathmaticsCulculater.cs" />
+    <Compile Include="Assets\Scripts\Pie.cs" />
+    <Compile Include="Assets\Scripts\PieGenerator.cs" />
+    <Compile Include="Assets\Scripts\PieThrower.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/m01182798e/Documents/GitHub/PieStrike/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

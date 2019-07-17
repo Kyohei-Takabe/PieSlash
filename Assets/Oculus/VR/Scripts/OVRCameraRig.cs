@@ -141,7 +141,8 @@ public class OVRCameraRig : MonoBehaviour
 
 		if (_skipUpdate)
 		{
-			centerEyeAnchor.FromOVRPose(OVRPose.identity, true);
+            //OVRExtensionsのtransform情報をOVR.i
+            centerEyeAnchor.FromOVRPose(OVRPose.identity, true);
 			leftEyeAnchor.FromOVRPose(OVRPose.identity, true);
 			rightEyeAnchor.FromOVRPose(OVRPose.identity, true);
 
@@ -261,6 +262,7 @@ public class OVRCameraRig : MonoBehaviour
 
 	public virtual void EnsureGameObjectIntegrity()
 	{
+        //monoscopicはHMDでの実行ならばtrue
 		bool monoscopic = OVRManager.instance != null ? OVRManager.instance.monoscopic : false;
 
 		if (trackingSpace == null)
