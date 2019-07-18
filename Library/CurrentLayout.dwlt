@@ -656,11 +656,16 @@ MonoBehaviour:
     m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_Size:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: 9.12025
     speed: 2
     m_Value: 9.12025
     m_Target: 3.4923015
     speed: 2
+=======
+    m_Target: 3.4923015
+    speed: 2
+>>>>>>> 961f6b820c536812e8e745328ce0cc072c85b20e
     m_Value: 3.4923015
   m_Ortho:
     m_Target: 0
