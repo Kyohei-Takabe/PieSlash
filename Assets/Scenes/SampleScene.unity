@@ -862,8 +862,8 @@ CanvasRenderer:
   m_Script: {fileID: 11500000, guid: 92cd53a896287442f8cf01f2ab131a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightHand: {fileID: 1486939520}
-  leftHand: {fileID: 843451746}
+  rightHand: {fileID: 0}
+  leftHand: {fileID: 0}
 --- !u!1 &369657027
 >>>>>>> 82f9af8eb04c0739ca94ed19bb2b6282a14d96d4
 GameObject:
@@ -1399,8 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df69ff3b62d9c4c87b8a0c790db9b743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piePrefab: {fileID: 6561914807635506972, guid: dc038cb353e77470790aa9a995a2d897,
-    type: 3}
+  piePrefab: {fileID: 0}
 --- !u!114 &843451745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2372,8 +2371,7 @@ GameObject:
   m_Script: {fileID: 11500000, guid: df69ff3b62d9c4c87b8a0c790db9b743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piePrefab: {fileID: 6561914807635506972, guid: dc038cb353e77470790aa9a995a2d897,
-    type: 3}
+  piePrefab: {fileID: 0}
 --- !u!114 &1486939522
 >>>>>>> 82f9af8eb04c0739ca94ed19bb2b6282a14d96d4
 MonoBehaviour:

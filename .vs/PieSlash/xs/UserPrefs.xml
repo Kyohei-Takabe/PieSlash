@@ -1,15 +1,12 @@
 ﻿<Properties StartupConfiguration="{2E7ABAC8-1942-B244-475F-70AB1016E12B}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HandController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Pie.cs" Line="30" Column="35" />
-      <File FileName="Assets/Scripts/PieGenerator.cs" Line="26" Column="37" />
-      <File FileName="Assets/Scripts/PieThrower.cs" Line="95" Column="35" />
-      <File FileName="Assets/Scripts/Player/Player.cs" Line="12" Column="7" />
-      <File FileName="Assets/Scripts/InputManager/InputManager.cs" Line="4" Column="1" />
-      <File FileName="Assets/Scripts/InputManager/OVRInputManager.cs" Line="22" Column="22" />
-      <File FileName="Assets/Scripts/InputManager/DebagInputManager.cs" Line="49" Column="3" />
-      <File FileName="Assets/Scripts/Mathmatic/MathmaticsCulculater.cs" Line="137" Column="3" />
-      <File FileName="Assets/Scripts/HandController.cs" Line="53" Column="3" />
+      <File FileName="Assets/Scripts/InputManager/InputManager.cs" Line="8" Column="19" />
+      <File FileName="Assets/Scripts/InputManager/OVRInputManager.cs" Line="48" Column="7" />
+      <File FileName="Assets/Scripts/Player/Player.cs" Line="70" Column="31" />
+      <File FileName="Assets/Scripts/HandController.cs" Line="102" Column="5" />
+      <File FileName="Assets/Scripts/PieGenerator.cs" Line="35" Column="37" />
+      <File FileName="Assets/Scripts/PieThrower.cs" Line="28" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

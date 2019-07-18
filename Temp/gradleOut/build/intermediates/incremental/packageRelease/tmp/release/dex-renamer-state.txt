@@ -1,0 +1,4 @@
+#Sun Jul 14 23:27:56 JST 2019
+base.0=/Users/takabekyouhei/MyActivity/MyWorks/Unityproject/university/PieSlash/Temp/gradleOut/build/intermediates/transforms/dexMerger/release/0
+path.0=classes.dex
+renamed.0=classes.dex
