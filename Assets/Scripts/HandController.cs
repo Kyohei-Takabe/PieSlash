@@ -10,19 +10,27 @@ public class HandController : MonoBehaviour
 
 	PieGenerator generator;
 	PieThrower thrower;
-
+	//OVRGrabber grabber;
+	[SerializeField]
+	protected OVRInput.Controller m_controller;
 	//現在から11フレーム前までの位置ベクトル
 	//prePositions[0]が最新の位置ベクトル
-	Vector3[] prePositions = new Vector3[11];
+	OVRPose[] localPose = new OVRPose[11];
+	//Vector3[] prePositions = new Vector3[11];
+	//Quaternion[] preRot = new Quaternion[10];
+	//手とオブジェクトの
+	Vector3 objectPosOffset = new Vector3(0.1f, 0, 0);
+	//Vector3 objectRotateOffset = new Vector3(0,0,90);
 
 	bool ishaving = false;
 
-	public float pieSpeed = 1.0f;
+	//public float pieSpeed = 100.0f;
 
 	void Start()
 	{
 		generator = GetComponent<PieGenerator>();
 		thrower = GetComponent<PieThrower>();
+		//grabber = GetComponent<OVRGrabber>();
 		if (generator == null)
 		{
 			Debug.Log("generator is null");
@@ -33,9 +41,13 @@ public class HandController : MonoBehaviour
 		}
 
 		//とりあえず0で初期化
-		for (int i = 0; i < prePositions.Length; i++)
+		//for (int i = 0; i < prePositions.Length; i++)
+		//{
+		//	prePositions[i] = Vector3.zero;
+		//}
+		for (int i = 0; i < localPose.Length; i++)
 		{
-			prePositions[i] = Vector3.zero;
+			localPose[i] = new OVRPose { position = Vector3.zero, orientation = Quaternion.identity };
 		}
 	}
 
@@ -44,15 +56,12 @@ public class HandController : MonoBehaviour
 
 	}
 
-	//pos情報をsetする
-	public void SetPosition(Vector3 lastFramePos)
-	{
-		for (int i = 0; i < prePositions.Length - 1; i++)
+	void SetLocalPose(OVRPose lastPose){
+		for (int i = 0; i < localPose.Length - 1; i++)
 		{
-			prePositions[i+1] = prePositions[i];
+			localPose[i + 1] = localPose[i];
 		}
-
-		prePositions[0] = lastFramePos;
+		localPose[0] = lastPose;
 	}
 
 	// パイを生成する
@@ -73,35 +82,57 @@ public class HandController : MonoBehaviour
 		if(ishaving){
 			pie.transform.position = transform.position;
 			pie.transform.rotation = transform.rotation;
-			//Vector3 size = transform.localScale;
-			//pie.transform.Translate(size.x,0,0);
 			if (hand == Hand.right)
 			{
-				pie.transform.Translate(-0.05f, 0, 0);
+				pie.transform.Translate(-objectPosOffset);
 			}
 			if (hand == Hand.left)
 			{
-				pie.transform.Translate(0.05f, 0, 0);
+				pie.transform.Translate(objectPosOffset);
 			}
 
-			pie.transform.Rotate(new Vector3(0, 0, 90));
-			SetPosition(transform.position);
+			//pie.transform.Rotate(objectRotateOffset);
+
+			//SetPosition(transform.localPosition);
+			//SetRotate(transform.localRotation);
+			//SetLocalPose(new OVRPose { position = transform.localPosition, orientation = transform.localRotation });
 		}
 	}
 
 	//パイを投げる
-	public void ThrowPie()
+	public void ThrowPie(float speed)
 	{
-		if(ishaving){
+		if(ishaving)
+		{
 			ishaving = false;
 			pie.transform.parent = null;
-			thrower.ThrowPie(pie.GetComponent<Pie>(), prePositions, pieSpeed);
+			//grabber.ForceRelease(pie.GetComponent<OVRGrabbable>());
+			//thrower.ThrowPie(pie.GetComponent<Pie>(), prePositions, preRot,speed);
 
-			//コントローラの位置情報を初期化
-			for (int i = 0; i < prePositions.Length; i++)
+			////コントローラの位置情報を初期化
+			//for (int i = 0; i < prePositions.Length; i++)
+			//{
+			//	prePositions[i] = Vector3.zero;
+			//}
+
+			thrower.ThrowPie(m_controller,pie.GetComponent<Pie>(), localPose, speed);
+
+			for (int i = 0; i < localPose.Length; i++)
 			{
-				prePositions[i] = Vector3.zero;
+				localPose[i].position = Vector3.zero;
+				localPose[i].orientation = Quaternion.identity;
 			}
 		}
 	}
+
+	public Vector3 GetControlerPose()
+	{
+		return localPose[0].position;
+	}
+
+	public Quaternion GetControlerRot()
+	{
+		return localPose[0].orientation;
+	}
+	
 }

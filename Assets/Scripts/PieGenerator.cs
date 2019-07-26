@@ -18,6 +18,7 @@ public class PieGenerator : MonoBehaviour
 
 	}
 
+	//Playerの手元で生成する用
 	public GameObject Generate(Transform _transform, Hand hand)
 	{
 		Transform trans = _transform;
@@ -25,17 +26,24 @@ public class PieGenerator : MonoBehaviour
 
 		if (hand == Hand.right)
 		{
-			trans.Translate(-0.05f, 0, 0);
+			trans.Translate(-0.1f, 0, 0);
 		}
 		if (hand == Hand.left)
 		{
-			trans.Translate(0.05f, 0, 0);
+			trans.Translate(0.1f, 0, 0);
 		}
 
-		trans.Rotate(new Vector3(0,0,90));
+		//trans.Rotate(new Vector3(0,0,90));
 
-		GameObject newPie = Instantiate(piePrefab, trans);
+		GameObject newPie = Instantiate(piePrefab, trans.position,trans.rotation);
 
+		return newPie;
+	}
+	//Tableの上に生成する用
+	public GameObject Generate(Transform _trans){
+		Transform trans = _trans;
+		trans.Translate(0, piePrefab.transform.position.y, 0);
+		GameObject newPie = Instantiate(piePrefab,trans);
 		return newPie;
 	}
 }

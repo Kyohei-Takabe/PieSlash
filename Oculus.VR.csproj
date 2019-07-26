@@ -69,6 +69,7 @@
     <Compile Include="Assets\Oculus\VR\Scripts\OVRBoundary.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVRCameraRig.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVRCommon.cs" />
+    <Compile Include="Assets\Oculus\VR\Scripts\OVRDebugConsole.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVRDebugHeadController.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVRDisplay.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\OVRHaptics.cs" />

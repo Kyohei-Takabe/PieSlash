@@ -60,15 +60,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CharacterStatus.cs" />
     <Compile Include="Assets\Scripts\HandController.cs" />
     <Compile Include="Assets\Scripts\InputManager\DebagInputManager.cs" />
     <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
     <Compile Include="Assets\Scripts\InputManager\OVRInputManager.cs" />
     <Compile Include="Assets\Scripts\Mathmatic\MathmaticsCulculater.cs" />
+    <Compile Include="Assets\Scripts\OVRConsole.cs" />
     <Compile Include="Assets\Scripts\Pie.cs" />
     <Compile Include="Assets\Scripts\PieGenerator.cs" />
     <Compile Include="Assets\Scripts\PieThrower.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\PopPieArea.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/takabekyouhei/MyActivity/MyWorks/Unityproject/university/PieSlash/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

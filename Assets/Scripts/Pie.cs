@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pie : MonoBehaviour
+public class Generable:MonoBehaviour
 {
-	//public GameObject pieModel;
-	Rigidbody rig;
-	// Start is called before the first frame update
+	protected Rigidbody rig;
+	//protected OVRGrabbable grabbable;
 	void Start()
 	{
 		rig = GetComponent<Rigidbody>();
+		//grabbable = GetComponent<OVRGrabbable>();
+		//status = GetComponent<PieStatus>();
 	}
+}
 
+public class Pie : Generable
+{
 	// Update is called once per frame
 	void Update()
 	{
@@ -25,8 +29,14 @@ public class Pie : MonoBehaviour
 
 	}
 
+	public void Throwed(Vector3 direction, Vector3 anglespeed, float speed)
+	{
+		rig.velocity = direction * speed;
+		rig.angularVelocity = anglespeed;
+	}
+
 	public void Throwed(Vector3 direction, float speed)
 	{
-		rig.AddForce(direction * speed);
+		rig.velocity = direction * speed;
 	}
 }

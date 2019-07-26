@@ -24,9 +24,25 @@ public class PieThrower : MonoBehaviour
 	//pieを投げる関数
 	public void ThrowPie(Pie pie, Vector3[] prePoses, float _speed)
 	{
+
 		Vector3 direction = CulculateDirection(prePoses);
-		float speed = CulculateSpeed(prePoses,_speed);
-		pie.Throwed(direction, speed);
+		//float speed = CulculateSpeed(prePoses,_speed);
+		//Quaternion rotateSpeed = preRots[0];
+
+		//テスト用
+		//Vector3 direction = prePoses[0] - prePoses[1];
+		float speed = _speed;
+		pie.Throwed(direction.normalized, speed);
+	}
+
+	public void ThrowPie(OVRInput.Controller controller,Pie pie, OVRPose[] poses, float _speed)
+	{
+		OVRPose trackingSpace = transform.parent.ToOVRPose() * poses[0].Inverse();
+		Vector3 linearVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerVelocity(controller);
+		Vector3 angularVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerAngularVelocity(controller);
+		float speed = _speed;
+		pie.Throwed(linearVelocity.normalized, angularVelocity, speed);
+		//GrabbableRelease(linearVelocity, angularVelocity);
 	}
 
 	//妥当な速度ベクトルのみを抽出する
@@ -84,7 +100,7 @@ public class PieThrower : MonoBehaviour
 		return direction;
 	}
 
-	//方向の計算
+	//方向を正規化
 	Vector3 CulculateDirection(Vector3[] prePoses)
 	{
 		Vector3 throwingVector = ThrowPieDirection(prePoses);

@@ -156,7 +156,8 @@ e0ee4b3d4e27318934cc940a969d3d96 UnityEngine.Networking.dll:UnityEngine.Networki
 ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-91e798cc59f35ddc20065fc60dc5fdcb Assembly-CSharp.dll:.HandController
+10ed0de88a3284f7c85776fa15d26f66 Assembly-CSharp.dll:.CharacterStatus
+b3880c953f1599413b831b6fc2e7188d Assembly-CSharp.dll:.HandController
 510fefd6a544e16a3ffefa557ddcba39 Unity.TextMeshPro.dll:TMPro.PackageResourceImporterWindow
 6eec73ef93bfe43ef513041177529a3d Oculus.VR.dll:.OVRWaitCursor
 aa82b3ce4c0c9b227036c0337315c5d3 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
@@ -193,3 +194,6 @@ d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
+157538f8f4891e8727c599fd613d7108 Oculus.VR.dll:.OVRDebugConsole
+9a2066e146811306d6b125ae54eebb47 Assembly-CSharp.dll:.OVRConsole
+1b8a53887346f7b2b356bb7f0d38a76f Assembly-CSharp.dll:.Table

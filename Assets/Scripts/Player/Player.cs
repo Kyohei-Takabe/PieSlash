@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 	private InputManager inputManager;
 	public HandController rightHand;
 	public HandController leftHand;
+	CharacterStatus status;
 
 	//public float walkSpeed;
 	//player,cameraのtransformを持つ
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
 		{
 			Debug.Log("leftHand is null");
 		}
+		status = GetComponent<CharacterStatus>();
 	}
 
 	// Update is called once per frame
@@ -69,12 +71,12 @@ public class Player : MonoBehaviour
 
 		if (inputManager.ThrowingR())
 		{
-			rightHand.ThrowPie();
+			rightHand.ThrowPie(status.throwSpeed);
 		}
 
 		if (inputManager.ThrowingL())
 		{
-			leftHand.ThrowPie();
+			leftHand.ThrowPie(status.throwSpeed);
 		}
 
 

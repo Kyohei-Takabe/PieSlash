@@ -90,6 +90,7 @@ public class OVRGrabber : MonoBehaviour
 		// If we are being used with an OVRCameraRig, let it drive input updates, which may come from Update or FixedUpdate.
 
 		OVRCameraRig rig = null;
+		//このスクリプトがOVRCamerarigの子供であるTrackingSpaceの子供にアタッチされている場合
 		if (transform.parent != null && transform.parent.parent != null)
 			rig = transform.parent.parent.GetComponent<OVRCameraRig>();
 
@@ -146,7 +147,7 @@ public class OVRGrabber : MonoBehaviour
 
 		float prevFlex = m_prevFlex;
 		// Update values from inputs
-		m_prevFlex = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller);
+		m_prevFlex = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller);
 
 		CheckForGrabOrRelease(prevFlex);
     }
@@ -326,6 +327,7 @@ public class OVRGrabber : MonoBehaviour
             OVRPose offsetPose = new OVRPose { position = m_anchorOffsetPosition, orientation = m_anchorOffsetRotation };
             localPose = localPose * offsetPose;
 
+			//ToOVRPosはローカル座標をOVRPoseとして返す(親がいない場合はグローバル座標)
 			OVRPose trackingSpace = transform.ToOVRPose() * localPose.Inverse();
 			Vector3 linearVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerVelocity(m_controller);
 			Vector3 angularVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerAngularVelocity(m_controller);
