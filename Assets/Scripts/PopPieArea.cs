@@ -17,7 +17,7 @@ public class PopPieArea : MonoBehaviour
 		timer = 0.0f;
 		isInside = false;
 		generator = GetComponent<PieGenerator>();
-		pie = generator.Generate(transform);
+		//pie = generator.Generate(transform);
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class PopPieArea : MonoBehaviour
 			if(timer >= timelag)
 			{
 				timer = 0.0f;
-				pie = generator.Generate(transform);
+				//pie = generator.Generate(transform);
 			}
 		}
 	}

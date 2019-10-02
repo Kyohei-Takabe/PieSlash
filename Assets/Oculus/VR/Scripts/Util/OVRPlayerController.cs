@@ -135,23 +135,23 @@ public class OVRPlayerController : MonoBehaviour
 	protected CharacterController Controller = null;
 	protected OVRCameraRig CameraRig = null;
 
-	protected float MoveScale = 1.0f;
-	protected Vector3 MoveThrottle = Vector3.zero;
-	protected float FallSpeed = 0.0f;
-	protected OVRPose? InitialPose;
+	private float MoveScale = 1.0f;
+	private Vector3 MoveThrottle = Vector3.zero;
+	private float FallSpeed = 0.0f;
+	private OVRPose? InitialPose;
 	public float InitialYRotation { get; private set; }
-	protected float MoveScaleMultiplier = 1.0f;
-	protected float RotationScaleMultiplier = 1.0f;
-	protected bool SkipMouseRotation = true; // It is rare to want to use mouse movement in VR, so ignore the mouse by default.
-	protected bool HaltUpdateMovement = false;
-	protected bool prevHatLeft = false;
-	protected bool prevHatRight = false;
-	protected float SimulationRate = 60f;
-	protected float buttonRotation = 0f;
-	protected bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
-	protected bool playerControllerEnabled = false;
+	private float MoveScaleMultiplier = 1.0f;
+	private float RotationScaleMultiplier = 1.0f;
+	private bool SkipMouseRotation = true; // It is rare to want to use mouse movement in VR, so ignore the mouse by default.
+	private bool HaltUpdateMovement = false;
+	private bool prevHatLeft = false;
+	private bool prevHatRight = false;
+	private float SimulationRate = 60f;
+	private float buttonRotation = 0f;
+	private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
+	private bool playerControllerEnabled = false;
 
-	public virtual void Start()
+	void Start()
 	{
 		// Add eye-depth as a camera offset from the player controller
 		var p = CameraRig.transform.localPosition;
@@ -159,7 +159,7 @@ public class OVRPlayerController : MonoBehaviour
 		CameraRig.transform.localPosition = p;
 	}
 
-	public virtual void Awake()
+	void Awake()
 	{
 		Controller = gameObject.GetComponent<CharacterController>();
 
@@ -184,7 +184,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 	}
 
-	public virtual void OnDisable()
+	void OnDisable()
 	{
 		if (playerControllerEnabled)
 		{
@@ -198,7 +198,7 @@ public class OVRPlayerController : MonoBehaviour
 		}
 	}
 
-	public virtual void Update()
+	void Update()
 	{
 		if (!playerControllerEnabled)
 		{

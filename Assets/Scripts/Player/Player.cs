@@ -5,60 +5,85 @@ using UnityEngine;
 //OVRCamerarigにアタッチされているスクリプト
 //入力を受け取ったら対応した動作をする
 //相手のパイにぶつかったらぶつかった箇所によって対応した処理をする→未実装
-//public enum Hand
-//{
-//	right,
-//	left
-//}
-
-public class Player : OVRPlayerController
+public enum Hand
 {
-	CharacterStatus status;
-	public OVRGrabber right;
-	public OVRGrabber left;
-	//public HandController controller;
-	//InputManager inputManager;
+	right,
+	left
+}
 
-	public override void Start()
+public class Player : MonoBehaviour
+{
+	private InputManager inputManager;
+	public HandController rightHand;
+	public HandController leftHand;
+
+	//public float walkSpeed;
+	//player,cameraのtransformを持つ
+	Rigidbody rig;
+
+	// Use this for initialization
+	public void Start()
 	{
-		base.Start();
-		Acceleration = status.acceralation;
-		Damping = status.damp;
-		if(right!=null){
-			right.throwSpeed = status.throwSpeed;
-		}
-		if (left != null)
+		inputManager = FindObjectOfType<OVRInputManager>();
+		if (inputManager == null)
 		{
-			left.throwSpeed = status.throwSpeed;
+			Debug.Log("inputManager is null");
 		}
-		//controller = GetComponent<HandController>();
-		//inputManager = GetComponent<InputManager>();
-	}
+		rig = GetComponent<Rigidbody>();
 
-	public override void Awake()
-	{
-		base.Awake();
-	}
+		if (rightHand == null)
+		{
+			Debug.Log("rightHand is null");
+		}
 
-	public override void OnDisable()
-	{
-		base.OnDisable();
-	}
-
-	public override void Update()
-	{
-		Acceleration = status.acceralation;
-		Damping = status.damp;
-		base.Update();
-	}
-
-	private void OnCollisionEnter(Collision collision)
-	{
-		if(collision.transform.tag == "Pie"){
-			float mass = status.mass;
-			mass += 5.0f+10.0f*(status.comb - 1);
-			status.mass = mass;
-			//status.isHit = true;
+		if (leftHand == null)
+		{
+			Debug.Log("leftHand is null");
 		}
 	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		if (inputManager.CreatedR())
+		{
+			//右手アンカーの位置にパイを生成する関数
+			rightHand.CreatePie(Hand.right);
+		}
+
+		if (inputManager.CreatedL())
+		{
+			//左手アンカーの位置にパイを生成する関数
+			leftHand.CreatePie(Hand.left);
+		}
+
+		if (inputManager.HavingR())
+		{
+			rightHand.HavingPie(Hand.right);
+		}
+
+		if (inputManager.HavingL())
+		{
+			　leftHand.HavingPie(Hand.left);
+		}
+
+		if (inputManager.ThrowingR())
+		{
+			rightHand.ThrowPie();
+		}
+
+		if (inputManager.ThrowingL())
+		{
+			leftHand.ThrowPie();
+		}
+
+
+	}
+
+	public void OnCollisionEnter(Collision collision)
+	{
+
+
+	}
+
 }

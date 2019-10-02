@@ -23,53 +23,52 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class OVRGrabber : MonoBehaviour
 {
-	public float throwSpeed;
-	// Grip trigger thresholds for picking up objects, with some hysteresis.
-	public float grabBegin = 0.55f;
-	public float grabEnd = 0.35f;
+    // Grip trigger thresholds for picking up objects, with some hysteresis.
+    public float grabBegin = 0.55f;
+    public float grabEnd = 0.35f;
 
-	// Demonstrates parenting the held object to the hand's transform when grabbed.
-	// When false, the grabbed object is moved every FixedUpdate using MovePosition.
-	// Note that MovePosition is required for proper physics simulation. If you set this to true, you can
-	// easily observe broken physics simulation by, for example, moving the bottom cube of a stacked
-	// tower and noting a complete loss of friction.
-	[SerializeField]
-	protected bool m_parentHeldObject = false;
+    // Demonstrates parenting the held object to the hand's transform when grabbed.
+    // When false, the grabbed object is moved every FixedUpdate using MovePosition.
+    // Note that MovePosition is required for proper physics simulation. If you set this to true, you can
+    // easily observe broken physics simulation by, for example, moving the bottom cube of a stacked
+    // tower and noting a complete loss of friction.
+    [SerializeField]
+    protected bool m_parentHeldObject = false;
 
-	// Child/attached transforms of the grabber, indicating where to snap held objects to (if you snap them).
-	// Also used for ranking grab targets in case of multiple candidates.
-	[SerializeField]
-	protected Transform m_gripTransform = null;
-	// Child/attached Colliders to detect candidate grabbable objects.
-	[SerializeField]
-	protected Collider[] m_grabVolumes = null;
+    // Child/attached transforms of the grabber, indicating where to snap held objects to (if you snap them).
+    // Also used for ranking grab targets in case of multiple candidates.
+    [SerializeField]
+    protected Transform m_gripTransform = null;
+    // Child/attached Colliders to detect candidate grabbable objects.
+    [SerializeField]
+    protected Collider[] m_grabVolumes = null;
 
-	// Should be OVRInput.Controller.LTouch or OVRInput.Controller.RTouch.
-	[SerializeField]
-	protected OVRInput.Controller m_controller;
+    // Should be OVRInput.Controller.LTouch or OVRInput.Controller.RTouch.
+    [SerializeField]
+    protected OVRInput.Controller m_controller;
 
-	[SerializeField]
-	protected Transform m_parentTransform;
+    [SerializeField]
+    protected Transform m_parentTransform;
 
-	protected bool m_grabVolumeEnabled = true;
-	protected Vector3 m_lastPos;
-	protected Quaternion m_lastRot;
-	protected Quaternion m_anchorOffsetRotation;
-	protected Vector3 m_anchorOffsetPosition;
-	protected float m_prevFlex;
+    protected bool m_grabVolumeEnabled = true;
+    protected Vector3 m_lastPos;
+    protected Quaternion m_lastRot;
+    protected Quaternion m_anchorOffsetRotation;
+    protected Vector3 m_anchorOffsetPosition;
+    protected float m_prevFlex;
 	protected OVRGrabbable m_grabbedObj = null;
-	protected Vector3 m_grabbedObjectPosOff;
-	protected Quaternion m_grabbedObjectRotOff;
+    protected Vector3 m_grabbedObjectPosOff;
+    protected Quaternion m_grabbedObjectRotOff;
 	protected Dictionary<OVRGrabbable, int> m_grabCandidates = new Dictionary<OVRGrabbable, int>();
 	protected bool operatingWithoutOVRCameraRig = true;
 
-	/// <summary>
-	/// The currently grabbed object.
-	/// </summary>
-	public OVRGrabbable grabbedObject
-	{
-		get { return m_grabbedObj; }
-	}
+    /// <summary>
+    /// The currently grabbed object.
+    /// </summary>
+    public OVRGrabbable grabbedObject
+    {
+        get { return m_grabbedObj; }
+    }
 
 	public void ForceRelease(OVRGrabbable grabbable)
     {
@@ -147,8 +146,7 @@ public class OVRGrabber : MonoBehaviour
 
 		float prevFlex = m_prevFlex;
 		// Update values from inputs
-		//m_prevFlex = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller);
-		m_prevFlex = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller);
+		m_prevFlex = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller);
 
 		CheckForGrabOrRelease(prevFlex);
     }
@@ -198,21 +196,14 @@ public class OVRGrabber : MonoBehaviour
 
     protected void CheckForGrabOrRelease(float prevFlex)
     {
-		//if ((m_prevFlex >= grabBegin) && (prevFlex < grabBegin))
-		//{
-		//    GrabBegin();
-		//}
-		//(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, m_controller))
-		if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, m_controller)){
-			GrabBegin();
-		}
-		//else if ((m_prevFlex <= grabEnd) && (prevFlex > grabEnd))
-		//{
-		//    GrabEnd();
-		//}
-		else if(OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger,m_controller)){
-			GrabEnd();
-		}
+        if ((m_prevFlex >= grabBegin) && (prevFlex < grabBegin))
+        {
+            GrabBegin();
+        }
+        else if ((m_prevFlex <= grabEnd) && (prevFlex > grabEnd))
+        {
+            GrabEnd();
+        }
     }
 
     protected virtual void GrabBegin()
@@ -234,11 +225,8 @@ public class OVRGrabber : MonoBehaviour
             {
                 Collider grabbableCollider = grabbable.grabPoints[j];
                 // Store the closest grabbable
-				//掴むオブジェクトを選ぶための位置がm_gripTransform
                 Vector3 closestPointOnBounds = grabbableCollider.ClosestPointOnBounds(m_gripTransform.position);
-				//掴もうとするオブジェクトとm_gripTransformの距離
                 float grabbableMagSq = (m_gripTransform.position - closestPointOnBounds).sqrMagnitude;
-				//ここまでサーチしたオブジェクトで一番近くであるか？
                 if (grabbableMagSq < closestMagSq)
                 {
                     closestMagSq = grabbableMagSq;
@@ -341,8 +329,7 @@ public class OVRGrabber : MonoBehaviour
 			OVRPose trackingSpace = transform.ToOVRPose() * localPose.Inverse();
 			Vector3 linearVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerVelocity(m_controller);
 			Vector3 angularVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerAngularVelocity(m_controller);
-			//Vector3 angularVelocity = 
-			linearVelocity *= throwSpeed;
+
             GrabbableRelease(linearVelocity, angularVelocity);
         }
 
@@ -368,13 +355,11 @@ public class OVRGrabber : MonoBehaviour
         for (int i = 0; i < m_grabVolumes.Length; ++i)
         {
             Collider grabVolume = m_grabVolumes[i];
-			//掴んだ時は掴む判定をしないようにする
             grabVolume.enabled = m_grabVolumeEnabled;
         }
 
         if (!m_grabVolumeEnabled)
         {
-			//話した場合は持っているオブジェクトを含めて全てのオブジェクトを消す
             m_grabCandidates.Clear();
         }
     }
