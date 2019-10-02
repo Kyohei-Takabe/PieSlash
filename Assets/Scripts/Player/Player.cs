@@ -5,87 +5,60 @@ using UnityEngine;
 //OVRCamerarigにアタッチされているスクリプト
 //入力を受け取ったら対応した動作をする
 //相手のパイにぶつかったらぶつかった箇所によって対応した処理をする→未実装
-public enum Hand
-{
-	right,
-	left
-}
+//public enum Hand
+//{
+//	right,
+//	left
+//}
 
-public class Player : MonoBehaviour
+public class Player : OVRPlayerController
 {
-	private InputManager inputManager;
-	public HandController rightHand;
-	public HandController leftHand;
 	CharacterStatus status;
+	public OVRGrabber right;
+	public OVRGrabber left;
+	//public HandController controller;
+	//InputManager inputManager;
 
-	//public float walkSpeed;
-	//player,cameraのtransformを持つ
-	Rigidbody rig;
-
-	// Use this for initialization
-	public void Start()
+	public override void Start()
 	{
-		inputManager = FindObjectOfType<OVRInputManager>();
-		if (inputManager == null)
-		{
-			Debug.Log("inputManager is null");
+		base.Start();
+		Acceleration = status.acceralation;
+		Damping = status.damp;
+		if(right!=null){
+			right.throwSpeed = status.throwSpeed;
 		}
-		rig = GetComponent<Rigidbody>();
-
-		if (rightHand == null)
+		if (left != null)
 		{
-			Debug.Log("rightHand is null");
+			left.throwSpeed = status.throwSpeed;
 		}
-
-		if (leftHand == null)
-		{
-			Debug.Log("leftHand is null");
-		}
-		status = GetComponent<CharacterStatus>();
+		//controller = GetComponent<HandController>();
+		//inputManager = GetComponent<InputManager>();
 	}
 
-	// Update is called once per frame
-	void Update()
+	public override void Awake()
 	{
-		if (inputManager.CreatedR())
-		{
-			//右手アンカーの位置にパイを生成する関数
-			rightHand.CreatePie(Hand.right);
-		}
-
-		if (inputManager.CreatedL())
-		{
-			//左手アンカーの位置にパイを生成する関数
-			leftHand.CreatePie(Hand.left);
-		}
-
-		if (inputManager.HavingR())
-		{
-			rightHand.HavingPie(Hand.right);
-		}
-
-		if (inputManager.HavingL())
-		{
-			　leftHand.HavingPie(Hand.left);
-		}
-
-		if (inputManager.ThrowingR())
-		{
-			rightHand.ThrowPie(status.throwSpeed);
-		}
-
-		if (inputManager.ThrowingL())
-		{
-			leftHand.ThrowPie(status.throwSpeed);
-		}
-
-
+		base.Awake();
 	}
 
-	public void OnCollisionEnter(Collision collision)
+	public override void OnDisable()
 	{
-
-
+		base.OnDisable();
 	}
 
+	public override void Update()
+	{
+		Acceleration = status.acceralation;
+		Damping = status.damp;
+		base.Update();
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if(collision.transform.tag == "Pie"){
+			float mass = status.mass;
+			mass += 5.0f+10.0f*(status.comb - 1);
+			status.mass = mass;
+			//status.isHit = true;
+		}
+	}
 }

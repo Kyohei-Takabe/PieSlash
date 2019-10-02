@@ -6,6 +6,7 @@ using UnityEngine;
 public class PieGenerator : MonoBehaviour
 {
 	public GameObject piePrefab;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -19,18 +20,19 @@ public class PieGenerator : MonoBehaviour
 	}
 
 	//Playerの手元で生成する用
-	public GameObject Generate(Transform _transform, Hand hand)
+	public GameObject Generate(Transform _transform, OVRInput.Controller controller)
 	{
 		Transform trans = _transform;
 		//Vector3 size = _transform.localScale;
 
-		if (hand == Hand.right)
+		if (controller == OVRInput.Controller.RTouch)
 		{
 			trans.Translate(-0.1f, 0, 0);
+			//trans.Rotate(0,0,180);
 		}
-		if (hand == Hand.left)
+		if (controller == OVRInput.Controller.LTouch)
 		{
-			trans.Translate(0.1f, 0, 0);
+			trans.Translate(0.075f, 0, 0);
 		}
 
 		//trans.Rotate(new Vector3(0,0,90));

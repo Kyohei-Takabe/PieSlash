@@ -135,22 +135,23 @@ public class OVRPlayerController : MonoBehaviour
 	protected CharacterController Controller = null;
 	protected OVRCameraRig CameraRig = null;
 
-	private float MoveScale = 1.0f;
-	private Vector3 MoveThrottle = Vector3.zero;
-	private float FallSpeed = 0.0f;
-	private OVRPose? InitialPose;
+	protected float MoveScale = 1.0f;
+	protected Vector3 MoveThrottle = Vector3.zero;
+	protected float FallSpeed = 0.0f;
+	protected OVRPose? InitialPose;
 	public float InitialYRotation { get; private set; }
-	private float MoveScaleMultiplier = 1.0f;
-	private float RotationScaleMultiplier = 1.0f;
-	private bool SkipMouseRotation = true; // It is rare to want to use mouse movement in VR, so ignore the mouse by default.
-	private bool HaltUpdateMovement = false;
-	private bool prevHatLeft = false;
-	private bool prevHatRight = false;
-	private float SimulationRate = 60f;
-	private float buttonRotation = 0f;
-	private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
+	protected float MoveScaleMultiplier = 1.0f;
+	protected float RotationScaleMultiplier = 1.0f;
+	protected bool SkipMouseRotation = true; // It is rare to want to use mouse movement in VR, so ignore the mouse by default.
+	protected bool HaltUpdateMovement = false;
+	protected bool prevHatLeft = false;
+	protected bool prevHatRight = false;
+	protected float SimulationRate = 60f;
+	protected float buttonRotation = 0f;
+	protected bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
+	protected bool playerControllerEnabled = false;
 
-	void Start()
+	public virtual void Start()
 	{
 		// Add eye-depth as a camera offset from the player controller
 		var p = CameraRig.transform.localPosition;
@@ -158,7 +159,7 @@ public class OVRPlayerController : MonoBehaviour
 		CameraRig.transform.localPosition = p;
 	}
 
-	void Awake()
+	public virtual void Awake()
 	{
 		Controller = gameObject.GetComponent<CharacterController>();
 
@@ -181,26 +182,39 @@ public class OVRPlayerController : MonoBehaviour
 
 	void OnEnable()
 	{
-		OVRManager.display.RecenteredPose += ResetOrientation;
+	}
 
-		if (CameraRig != null)
+	public virtual void OnDisable()
+	{
+		if (playerControllerEnabled)
 		{
-			CameraRig.UpdatedAnchors += UpdateTransform;
+			OVRManager.display.RecenteredPose -= ResetOrientation;
+
+			if (CameraRig != null)
+			{
+				CameraRig.UpdatedAnchors -= UpdateTransform;
+			}
+			playerControllerEnabled = false;
 		}
 	}
 
-	void OnDisable()
+	public virtual void Update()
 	{
-		OVRManager.display.RecenteredPose -= ResetOrientation;
-
-		if (CameraRig != null)
+		if (!playerControllerEnabled)
 		{
-			CameraRig.UpdatedAnchors -= UpdateTransform;
-		}
-	}
+			if (OVRManager.OVRManagerinitialized)
+			{
+				OVRManager.display.RecenteredPose += ResetOrientation;
 
-	void Update()
-	{
+				if (CameraRig != null)
+				{
+					CameraRig.UpdatedAnchors += UpdateTransform;
+				}
+				playerControllerEnabled = true;
+			}
+			else
+				return;
+		}
 		//Use keys to ratchet rotation
 		if (Input.GetKeyDown(KeyCode.Q))
 			buttonRotation -= RotationRatchet;

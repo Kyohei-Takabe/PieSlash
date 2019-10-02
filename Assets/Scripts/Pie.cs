@@ -22,10 +22,36 @@ public class Pie : Generable
 
 	}
 
-	private void OnTriggerExit(Collider other)
+	private void OnTriggerEnter(Collider other)
 	{
 		//クリームが残るようにする
 		//消滅させる
+		//地面に着弾した時の処理
+		if (other.tag == "Ground")
+		{
+			rig.constraints = RigidbodyConstraints.None;
+			//rig.constraints = RigidbodyConstraints.FreezePosition;
+		}
+		//Playerに着弾した時の処理
+		//Enemyに着弾した時の処理
+		//ステージ上の障害物に着弾した時の処理
+
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		string tag = collision.transform.tag;
+		if (tag == "Ground")
+		{
+			//rig.constraints = RigidbodyConstraints.None;
+			//rig.velocity = Vector3.zero;
+			//rig.constraints = RigidbodyConstraints.FreezePosition;
+			Destroy(this.gameObject);
+		}
+
+		if(tag == "Player"||tag == "Enemy"){
+			Destroy(this.gameObject);
+		}
 
 	}
 

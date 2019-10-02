@@ -23,17 +23,18 @@ public class PopPieArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+		NoExistAnyObj();
     }
 
 	private void OnTriggerEnter(Collider other)
 	{
-		isInside = true;
+		if(other.tag == "Pie"){ isInside = true; }
+
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
-		isInside = false;
+		if(other.tag == "Pie"){ isInside = false; }
 	}
 
 	void NoExistAnyObj()
@@ -45,12 +46,11 @@ public class PopPieArea : MonoBehaviour
 				timer += Time.deltaTime;
 			}
 
-			if(timer > timelag)
+			if(timer >= timelag)
 			{
 				timer = 0.0f;
 				pie = generator.Generate(transform);
 			}
-			
 		}
 	}
 }
