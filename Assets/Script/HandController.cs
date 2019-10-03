@@ -11,7 +11,7 @@ public enum Hand
 //アンカーにしてほしい処理が書かれている
 public class HandController : MonoBehaviour
 {
-	GameObject pie = null;
+	GameObject pieObject = null;
 
 	PieGenerator generator;
 	PieThrower thrower;
@@ -64,66 +64,29 @@ public class HandController : MonoBehaviour
 			CreatePie();
 		}
 
+		if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, m_controller)){
+			thrower.MoveGrabbedObject(transform.position, transform.rotation, true);
+		}
+
 		if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, m_controller))
 		{
 			if (ishaving)
 			{
 				ishaving = false;
+				thrower.GrabEnd();
 			}
 		}
 	}
-
-	//void SetLocalPose(OVRPose lastPose){
-	//	for (int i = 0; i < localPose.Length - 1; i++)
-	//	{
-	//		localPose[i + 1] = localPose[i];
-	//	}
-	//	localPose[0] = lastPose;
-	//}
-
-	// パイを生成する
 
 	public void CreatePie()
 	{
 		if (!ishaving){
 			//pie = generator.Generate();
 
-			pie = generator.Generate(transform, m_controller);
+			pieObject = generator.Generate(transform, m_controller);
+			Pie pie = pieObject.GetComponent<Pie>();
 			ishaving = true;
+			thrower.GrabBegin(pie);
 		}
 	}
-
-	//パイを持っている状態(パイを生成してまだ投げていない状態のこと)
-	//public void HavingPie(Hand hand)
-	//{
-	//	if(ishaving){
-	//		pie.transform.position = transform.position;
-	//		pie.transform.rotation = transform.rotation;
-	//		if (hand == Hand.right)
-	//		{
-	//			pie.transform.Translate(-objectPosOffset);
-	//		}
-	//		if (hand == Hand.left)
-	//		{
-	//			pie.transform.Translate(objectPosOffset);
-	//		}
-
-	//		//pie.transform.Rotate(objectRotateOffset);
-
-	//		//SetPosition(transform.localPosition);
-	//		//SetRotate(transform.localRotation);
-	//		//SetLocalPose(new OVRPose { position = transform.localPosition, orientation = transform.localRotation });
-	//	}
-	//}
-
-	//public Vector3 GetControlerPose()
-	//{
-	//	return localPose[0].position;
-	//}
-
-	//public Quaternion GetControlerRot()
-	//{
-	//	return localPose[0].orientation;
-	//}
-	
 }

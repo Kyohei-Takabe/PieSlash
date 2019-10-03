@@ -5,14 +5,73 @@ using UnityEngine;
 //Pieを投げる機能を持ったクラス
 public class PieThrower : MonoBehaviour
 {
+	[SerializeField]
+	protected bool m_parentHeldObject = false;
+	[SerializeField]
+	protected OVRInput.Controller m_controller;
+	[SerializeField]
+	protected Transform m_parentTransform;
 
-	//速度ベクトルのうち信頼性の高いもの
-	List<Vector3> adoptedVelocity = new List<Vector3>();
+
+	//protected PieGenerator generator;
+
+	protected Pie m_grabbedObj = null;
+
+	protected Vector3 m_lastPos;
+	protected Quaternion m_lastRot;
+
+	protected Vector3 m_anchorOffsetPosition;
+	protected Quaternion m_anchorOffsetRotation;
+
+	protected Vector3 m_grabbedObjectPosOff;
+	protected Quaternion m_grabbedObjectRotOff;
+	protected bool m_grabEnabled = true;
+
+	public float throwSpeed { get; set; }
+	protected bool operatingWithoutOVRCameraRig = true;
+
+	protected virtual void Awake()
+	{
+		m_anchorOffsetPosition = transform.localPosition;
+		m_anchorOffsetRotation = transform.localRotation;
+
+		// If we are being used with an OVRCameraRig, let it drive input updates, which may come from Update or FixedUpdate.
+
+		OVRCameraRig rig = null;
+		if (transform.parent != null && transform.parent.parent != null)
+			rig = transform.parent.parent.GetComponent<OVRCameraRig>();
+
+		if (rig != null)
+		{
+			rig.UpdatedAnchors += (r) => { OnUpdatedAnchors(); };
+			operatingWithoutOVRCameraRig = false;
+		}
+	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		m_lastPos = transform.position;
+		m_lastRot = transform.rotation;
+		if (m_parentTransform == null)
+		{
+			if (gameObject.transform.parent != null)
+			{
+				m_parentTransform = gameObject.transform.parent.transform;
+			}
+			else
+			{
+				m_parentTransform = new GameObject().transform;
+				m_parentTransform.position = Vector3.zero;
+				m_parentTransform.rotation = Quaternion.identity;
+			}
+		}
+	}
 
+	void FixedUpdate()
+	{
+		if (operatingWithoutOVRCameraRig)
+			OnUpdatedAnchors();
 	}
 
 	// Update is called once per frame
@@ -21,80 +80,99 @@ public class PieThrower : MonoBehaviour
 
 	}
 
-	//pieを投げる関数
-	public void ThrowPie(Pie pie, Vector3[] prePoses, float _speed)
+	void OnUpdatedAnchors()
 	{
-		Vector3 direction = CulculateDirection(prePoses);
-		float speed = CulculateSpeed(prePoses,_speed);
-		pie.Throwed(direction, speed);
-	}
+		Vector3 handPos = OVRInput.GetLocalControllerPosition(m_controller);
+		Quaternion handRot = OVRInput.GetLocalControllerRotation(m_controller);
+		Vector3 destPos = m_parentTransform.TransformPoint(m_anchorOffsetPosition + handPos);
+		Quaternion destRot = m_parentTransform.rotation * handRot * m_anchorOffsetRotation;
+		GetComponent<Rigidbody>().MovePosition(destPos);
+		GetComponent<Rigidbody>().MoveRotation(destRot);
 
-	//妥当な速度ベクトルのみを抽出する
-	void ExtructedVelocity(Vector3[] prePositions)
-	{
-		//直近10フレームでの速度ベクトル
-		Vector3[] velocitys = new Vector3[10];
-		//前向きのベクトル
-		List<Vector3> forwardVelocity = new List<Vector3>();
-		//
-		List<float> forwardVelocitySizes = new List<float>();
-		List<float> highDeviation = new List<float>();
-
-		//前向きのベクトルだけをListにする 
-		for (int i = 0; i < velocitys.Length - 1; i++)
+		if (!m_parentHeldObject)
 		{
-			velocitys[i] = prePositions[i] - prePositions[i+1];
-			if (Vector3.Dot(velocitys[i], prePositions[0] - prePositions[velocitys.Length - 1]) > 0)
-			{
-				forwardVelocity.Add(velocitys[i]);
-			}
+			MoveGrabbedObject(destPos, destRot);
 		}
-		//Listにしたベクトルの大きさを求める
-		for (int i = 0; i < forwardVelocity.Count; i++)
+		m_lastPos = transform.position;
+		m_lastRot = transform.rotation;
+	}
+
+	void OnDestroy()
+	{
+		if (m_grabbedObj != null)
 		{
-			forwardVelocitySizes.Add(forwardVelocity[i].magnitude);
+			GrabEnd();
 		}
-		//Listにしたベクトルの大きさから偏差値を求め，偏差値60以上を採用する
-		for (int i = 0; i < forwardVelocity.Count; i++)
+	}
+
+	public virtual void GrabBegin(Pie grabbable)
+	{
+		GrabVolumeEnable(false);
+		m_grabbedObj = grabbable;
+		m_grabbedObj.GrabBegin(this,m_grabbedObj.grabPoint);
+		m_lastPos = transform.position;
+		m_lastRot = transform.rotation;
+
+		Quaternion relOri = Quaternion.Inverse(transform.rotation) * m_grabbedObj.transform.rotation;
+		m_grabbedObjectRotOff = relOri;
+
+		//MoveGrabbedObject(m_lastPos, m_lastRot, true);
+		if (m_parentHeldObject)
 		{
-			highDeviation.Add(MathmaticsCulculater.CulculateDeviationValue(forwardVelocitySizes[i],
-																		   forwardVelocitySizes));
-			if (highDeviation[i] > 60)
-			{
-				adoptedVelocity.Add(forwardVelocity[i]);
-			}
-		}
-
-		if(adoptedVelocity == null){
-			adoptedVelocity.Add(new Vector3(0, 0, 0));
+			m_grabbedObj.transform.parent = transform;
 		}
 	}
 
-	//pieの飛んでく方向を計算する
-	Vector3 ThrowPieDirection(Vector3[] prePoses)
+	//掴んでいるときにオブジェクトが手に追従する
+	public void MoveGrabbedObject(Vector3 pos, Quaternion rot, bool forceTeleport = false)
 	{
-		//妥当なベクトルの選定
-		ExtructedVelocity(prePoses);
-		//MathmaticsCulculater.RowPathFilter();
-		//各ベクトルの最小二乗平面に最後のベクトルを射影したベクトル
-		Vector3 direction = MathmaticsCulculater.VectorProjectionToLeastSquaresPlane(adoptedVelocity);
+		if (m_grabbedObj == null)
+		{
+			return;
+		}
 
-		//テストコード
-		//Vector3 direction = prePositions[0] - prePositions[1];
-		return direction;
+		Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
+		Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
+		Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
+
+		grabbedRigidbody.MovePosition(grabbablePosition);
+		grabbedRigidbody.MoveRotation(grabbableRotation);
 	}
 
-	//方向の計算
-	Vector3 CulculateDirection(Vector3[] prePoses)
+	//GrabEndを呼べば投げることができる
+	public void GrabEnd()
 	{
-		Vector3 throwingVector = ThrowPieDirection(prePoses);
-		return throwingVector.normalized;
+		if (m_grabbedObj != null)
+		{
+			OVRPose localPose = new OVRPose { position = OVRInput.GetLocalControllerPosition(m_controller), orientation = OVRInput.GetLocalControllerRotation(m_controller) };
+			OVRPose offsetPose = new OVRPose { position = m_anchorOffsetPosition, orientation = m_anchorOffsetRotation };
+			localPose = localPose * offsetPose;
+
+			OVRPose trackingSpace = transform.ToOVRPose() * localPose.Inverse();
+			Vector3 linearVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerVelocity(m_controller) * throwSpeed;
+			Vector3 angularVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerAngularVelocity(m_controller);
+
+			GrabbableRelease(linearVelocity, angularVelocity);
+		}
+
+		// Re-enable grab volumes to allow overlap events
+		GrabVolumeEnable(true);
 	}
 
-	//速度の計算
-	float CulculateSpeed(Vector3[] prePoses, float speed)
+	protected virtual void GrabVolumeEnable(bool enabled)
 	{
-		Vector3 throwingVector = ThrowPieDirection(prePoses);
-		return throwingVector.magnitude * speed/ Time.deltaTime;
+		if (m_grabEnabled == enabled)
+		{
+			return;
+		}
+
+		m_grabEnabled = enabled;
+	}
+
+	protected void GrabbableRelease(Vector3 linearVelocity, Vector3 angularVelocity)
+	{
+		m_grabbedObj.GrabEnd(linearVelocity, angularVelocity);
+		if (m_parentHeldObject) m_grabbedObj.transform.parent = null;
+		m_grabbedObj = null;
 	}
 }

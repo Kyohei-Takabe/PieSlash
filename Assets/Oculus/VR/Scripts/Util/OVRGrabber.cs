@@ -348,14 +348,15 @@ public class OVRGrabber : MonoBehaviour
         m_grabbedObj = null;
     }
 
-    protected virtual void GrabVolumeEnable(bool enabled)
-    {
-        if (m_grabVolumeEnabled == enabled)
-        {
-            return;
-        }
+	protected virtual void GrabVolumeEnable(bool enabled)
+	{
+		if (m_grabVolumeEnabled == enabled)
+		{
+			return;
+		}
 
-        m_grabVolumeEnabled = enabled;
+		m_grabVolumeEnabled = enabled;
+
         for (int i = 0; i < m_grabVolumes.Length; ++i)
         {
             Collider grabVolume = m_grabVolumes[i];

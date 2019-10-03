@@ -14,8 +14,8 @@ using UnityEngine;
 public class Player : OVRPlayerController
 {
 	CharacterStatus status;
-	public OVRGrabber right;
-	public OVRGrabber left;
+	public PieThrower right;
+	public PieThrower left;
 	//public HandController controller;
 	//InputManager inputManager;
 

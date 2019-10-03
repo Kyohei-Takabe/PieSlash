@@ -35,12 +35,13 @@ public class OVRGrabbable : MonoBehaviour
 
     protected bool m_grabbedKinematic = false;
     protected Collider m_grabbedCollider = null;
-    protected OVRGrabber m_grabbedBy = null;
+	//protected PieThrower m_grabbedBy = null;
+	protected OVRGrabber m_grabbedBy = null;
 
 	/// <summary>
 	/// If true, the object can currently be grabbed.
 	/// </summary>
-    public bool allowOffhandGrab
+	public bool allowOffhandGrab
     {
         get { return m_allowOffhandGrab; }
     }
@@ -113,11 +114,18 @@ public class OVRGrabbable : MonoBehaviour
 	/// Notifies the object that it has been grabbed.
 	/// </summary>
 	virtual public void GrabBegin(OVRGrabber hand, Collider grabPoint)
-    {
-        m_grabbedBy = hand;
-        m_grabbedCollider = grabPoint;
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
-    }
+	{
+	    m_grabbedBy = hand;
+	    m_grabbedCollider = grabPoint;
+	    gameObject.GetComponent<Rigidbody>().isKinematic = true;
+	}
+
+	//virtual public void GrabBegin(
+	//{
+	//	m_grabbedBy = hand;
+	//	//m_grabbedCollider = grabPoint;
+	//	gameObject.GetComponent<Rigidbody>().isKinematic = true;
+	//}
 
 	/// <summary>
 	/// Notifies the object that it has been released.

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7118633659949848209}
   - component: {fileID: 7118633659949848208}
   - component: {fileID: 7118633659949848211}
-  - component: {fileID: 7118633659949848210}
   - component: {fileID: 7118633659949848221}
   m_Layer: 0
   m_Name: Pie
@@ -46,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.03, y: 0.6, z: 0.6}
+  m_Center: {x: -0.015, y: 0, z: 0}
 --- !u!54 &7118633659949848211
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -64,24 +63,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7118633659949848210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7118633659949848220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints: []
 --- !u!114 &7118633659949848221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b7d17a5ad1a4991b47c3280bfb5a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_grabPoint: {fileID: 0}
 --- !u!1001 &1462248113500484389
 PrefabInstance:
   m_ObjectHideFlags: 0
