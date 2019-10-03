@@ -10,7 +10,9 @@ public class MoveEnemy : MonoBehaviour
         Attack,
         Freeze
     };
-    private CharacterController enemyController;
+
+	const float GravityPower = 9.8f;
+	private CharacterController enemyController;
     private Animator animator;
     //　目的地
     private Vector3 destination;
@@ -40,11 +42,11 @@ public class MoveEnemy : MonoBehaviour
 
 	CharacterStatus status;
 
+	public GameObject PIE;
 
-
-    public GameObject Pond;
-    // Use this for initialization
-    void Start()
+	//public Pond[] Ponds;
+	// Use this for initialization
+	void Start()
     {
         enemyController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -70,6 +72,7 @@ public class MoveEnemy : MonoBehaviour
             {
                 setPosition.SetDestination(playerTransform.position);
             }
+
             if (enemyController.isGrounded)
             {
                 velocity = Vector3.zero;
@@ -77,6 +80,7 @@ public class MoveEnemy : MonoBehaviour
                 direction = (setPosition.GetDestination() - transform.position).normalized;
                 transform.LookAt(new Vector3(setPosition.GetDestination().x, transform.position.y, setPosition.GetDestination().z));
 				velocity = direction * walkSpeed * status.acceralationRate;
+				//velocity = transform.forward * walkSpeed * status.acceralationRate;
             }
 
             if (state == EnemyState.Walk)
@@ -91,12 +95,13 @@ public class MoveEnemy : MonoBehaviour
             else if (state == EnemyState.Chase)
             {
                 //　攻撃する距離だったら攻撃
-                if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 5f)
+				if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 5f && status.pieCream >= 25.0f)
                 {
                     SetState(EnemyState.Attack);
                 }
             }
         }
+
         else if (state == EnemyState.Wait)
         {
             elapsedTime += Time.deltaTime;
@@ -108,6 +113,7 @@ public class MoveEnemy : MonoBehaviour
             }
             //　攻撃後のフリーズ状態
         }
+
         else if (state == EnemyState.Freeze)
         {
             elapsedTime += Time.deltaTime;
@@ -119,11 +125,36 @@ public class MoveEnemy : MonoBehaviour
         }
 
 		else if (state == EnemyState.Attack){
-			
+			if (status.pieCream > 5.0f) {
+				Transform trans = transform;
+				trans.position = new Vector3(this.transform.position.x + 0.5f, this.transform.position.y + 1.5f, this.transform.position.z);
+				trans.Rotate(0, 90, 0);
+
+				//GameObject PIEs = Instantiate(PIE) as GameObject;
+				GameObject PIEs = Instantiate(PIE, trans);
+				PIEs.tag = "EnemyPie";
+				PIEs.GetComponent<Rigidbody>().velocity = transform.forward * status.throwSpeed;
+				status.pieCream -= 5.0f;
+
+				SetState(EnemyState.Freeze);
+			}
+			else{
+				SetState(EnemyState.Walk);
+			}
 		}
 
-        velocity.y += Physics.gravity.y * Time.deltaTime;
-        enemyController.Move(velocity * Time.deltaTime);
+		//速度に重力分を加算する
+		velocity += Vector3.down * GravityPower * Time.deltaTime;
+		//接地している場合，地面に押し付けるための変数
+		//これはCharaterContorollerの特性のため
+		Vector3 snapGround = Vector3.zero;
+
+		if (enemyController.isGrounded)
+		{
+			snapGround = Vector3.down;
+		}
+
+		enemyController.Move(velocity * Time.deltaTime + snapGround);
     }
     //　敵キャラクターの状態変更メソッド
     public void SetState(EnemyState tempState, Transform targetObj = null)
