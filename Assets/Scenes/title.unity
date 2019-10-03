@@ -39,10 +39,14 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
 =======
   m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+>>>>>>> temp2
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -243,10 +247,14 @@ RectTransform:
   - {fileID: 157213890}
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 5
 =======
   m_RootOrder: 4
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  m_RootOrder: 4
+>>>>>>> temp2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -271,6 +279,7 @@ MonoBehaviour:
   dimOnHideRequest: 1
   depthScaleMultiplier: 0.03
   matchNormalOnPhysicsColliders: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
   rayTransform: {fileID: 1541409376}
 --- !u!1 &136032458 stripped
@@ -384,6 +393,9 @@ PrefabInstance:
 =======
   rayTransform: {fileID: 0}
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  rayTransform: {fileID: 0}
+>>>>>>> temp2
 --- !u!1 &157213889
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,6 +606,7 @@ Transform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &523303597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100008, guid: ce816f2e6abb0504092c23ed9b970dfd,
@@ -648,6 +661,8 @@ MonoBehaviour:
   _MaxDistance: 100
   _LaserPointerRenderer: {fileID: 105870793}
 =======
+=======
+>>>>>>> temp2
 --- !u!1001 &655537202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -775,7 +790,10 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 655537202}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+>>>>>>> temp2
 --- !u!1 &810777554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1030,10 @@ CanvasRenderer:
   m_GameObject: {fileID: 914788135}
   m_CullTransparentMesh: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> temp2
 --- !u!1001 &1013706638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1298,22 +1319,38 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905122245729238, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905122059097558, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905123113859123, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905122125044253, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905122621511413, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905122245729238, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905123675588967, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905122316614267, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
@@ -1323,12 +1360,20 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905122125044253, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905122422054472, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905122316614267, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905122524880847, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
@@ -1338,39 +1383,163 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905122872771601, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905122621511413, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905123300350074, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905122872771601, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905122524880847, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905123113859123, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905123602097484, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905123300350074, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905122422054472, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905123602097484, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 194905122059097558, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+=======
+    - target: {fileID: 194905123675588967, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+>>>>>>> temp2
         type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc3f7117e66c749b0bc7fc8904b2391a, type: 3}
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+    - target: {fileID: 6236202151455966826, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 335956164105229596, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2823079309865166453, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1326123856936242276, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316799179216840138, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389533910307305212, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427275565115713181, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683912231340309921, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594466454616251900, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666904357995006897, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045568746755881857, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814262486039516536, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121876622579758103, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677706693697031357, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015617387636515274, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066873803327721204, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870348017263143273, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509652614490159026, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846593865802310499, guid: bc3f7117e66c749b0bc7fc8904b2391a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc3f7117e66c749b0bc7fc8904b2391a, type: 3}
+>>>>>>> temp2
 --- !u!1 &1157372782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,9 +1553,13 @@ GameObject:
   - component: {fileID: 1157372785}
   - component: {fileID: 1157372784}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - component: {fileID: 1157372788}
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  - component: {fileID: 1157372788}
+>>>>>>> temp2
   - component: {fileID: 1157372783}
   m_Layer: 0
   m_Name: StartBox
@@ -1416,10 +1589,14 @@ BoxCollider:
   m_GameObject: {fileID: 1157372782}
   m_Material: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IsTrigger: 1
 =======
   m_IsTrigger: 0
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  m_IsTrigger: 0
+>>>>>>> temp2
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1442,10 +1619,14 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
 =======
   - {fileID: 2100000, guid: 1b3b9958c29f34697aaba78816cd294f, type: 2}
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  - {fileID: 2100000, guid: 1b3b9958c29f34697aaba78816cd294f, type: 2}
+>>>>>>> temp2
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1483,16 +1664,23 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 3.45}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 0.5, z: 0.25}
 =======
   m_LocalScale: {x: 1, y: 1, z: 0.25}
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  m_LocalScale: {x: 1, y: 1, z: 0.25}
+>>>>>>> temp2
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> temp2
 --- !u!54 &1157372788
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1509,7 +1697,10 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+<<<<<<< HEAD
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+>>>>>>> temp2
 --- !u!1 &1157810394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,10 +1720,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IsActive: 1
 =======
   m_IsActive: 0
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  m_IsActive: 0
+>>>>>>> temp2
 --- !u!64 &1157810395
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1606,6 +1801,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1001 &1541409374
 PrefabInstance:
@@ -1698,6 +1894,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+>>>>>>> temp2
 --- !u!1 &1621285623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,10 +2037,14 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Camera: {fileID: 1541409375}
 =======
   m_Camera: {fileID: 0}
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+  m_Camera: {fileID: 0}
+>>>>>>> temp2
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1961,6 +2163,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 1981574717}
   m_CullTransparentMesh: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &2007228279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2071,3 +2274,5 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> 895241d... 2019/10/02の作業分
+=======
+>>>>>>> temp2

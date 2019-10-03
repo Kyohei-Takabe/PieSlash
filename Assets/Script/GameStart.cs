@@ -16,15 +16,6 @@ public class GameStart : MonoBehaviour
     {
 
     }
-<<<<<<< HEAD
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Player" )
-        {
-            SceneManager.LoadScene("Main");
-        }
-    }
-=======
 
   //  void OnCollisionExit(Collider col)
   //  {
@@ -41,5 +32,4 @@ public class GameStart : MonoBehaviour
 			SceneManager.LoadScene("Play");
 		}
 	}
->>>>>>> 895241d... 2019/10/02の作業分
 }

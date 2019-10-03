@@ -5,98 +5,56 @@ using UnityEngine;
 //OVRCamerarigにアタッチされているスクリプト
 //入力を受け取ったら対応した動作をする
 //相手のパイにぶつかったらぶつかった箇所によって対応した処理をする→未実装
-public enum Hand
+//public enum Hand
+//{
+//	right,
+//	left
+//}
+
+public class Player : OVRPlayerController
 {
-	right,
-	left
-}
+	CharacterStatus status;
+	public OVRGrabber right;
+	public OVRGrabber left;
+	//public HandController controller;
+	//InputManager inputManager;
 
-public class Player : MonoBehaviour
-{
-	private InputManager inputManager;
-	public HandController rightHand;
-	public HandController leftHand;
-
-	//public float walkSpeed;
-	//player,cameraのtransformを持つ
-	Rigidbody rig;
-
-	// Use this for initialization
-	public void Start()
+	public override void Start()
 	{
-<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
-		inputManager = FindObjectOfType<OVRInputManager>();
-		if (inputManager == null)
-		{
-			Debug.Log("inputManager is null");
-=======
 		base.Start();
 		status = GetComponent<CharacterStatus>();
 		Acceleration = status.acceralation;
 		Damping = status.damp;
 		if(right!=null){
 			right.throwSpeed = status.throwSpeed;
->>>>>>> 895241d... 2019/10/02の作業分:Assets/Script/Player/Player.cs
 		}
-		rig = GetComponent<Rigidbody>();
-
-		if (rightHand == null)
+		if (left != null)
 		{
-			Debug.Log("rightHand is null");
+			left.throwSpeed = status.throwSpeed;
 		}
-
-		if (leftHand == null)
-		{
-			Debug.Log("leftHand is null");
-		}
+		//controller = GetComponent<HandController>();
+		//inputManager = GetComponent<InputManager>();
 	}
 
-	// Update is called once per frame
-	void Update()
+	public override void Awake()
 	{
-		if (inputManager.CreatedR())
-		{
-			//右手アンカーの位置にパイを生成する関数
-			rightHand.CreatePie(Hand.right);
-		}
-
-		if (inputManager.CreatedL())
-		{
-			//左手アンカーの位置にパイを生成する関数
-			leftHand.CreatePie(Hand.left);
-		}
-
-		if (inputManager.HavingR())
-		{
-			rightHand.HavingPie(Hand.right);
-		}
-
-		if (inputManager.HavingL())
-		{
-			　leftHand.HavingPie(Hand.left);
-		}
-
-		if (inputManager.ThrowingR())
-		{
-			rightHand.ThrowPie();
-		}
-
-		if (inputManager.ThrowingL())
-		{
-			leftHand.ThrowPie();
-		}
-
-
+		base.Awake();
 	}
 
-	public void OnCollisionEnter(Collision collision)
+	public override void OnDisable()
 	{
-<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
-
-
+		base.OnDisable();
 	}
 
-=======
+	public override void Update()
+	{
+		Acceleration = status.acceralation;
+		Damping = status.damp;
+		base.Update();
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
 		if(collision.transform.tag == "EnemyPie"){
 			float mass = status.mass;
 			mass += 5.0f+10.0f*(status.comb - 1);
@@ -114,5 +72,4 @@ public class Player : MonoBehaviour
 			status.mass = mass;
 		}
 	}
->>>>>>> 895241d... 2019/10/02の作業分:Assets/Script/Player/Player.cs
 }

@@ -22,9 +22,6 @@ public class Pie : MonoBehaviour
 	{
 		//クリームが残るようにする
 		//消滅させる
-<<<<<<< HEAD:Assets/Scripts/Pie.cs
-
-=======
 		//地面に着弾した時の処理
 		//if (other.tag == "Ground")
 		//{
@@ -54,7 +51,12 @@ public class Pie : MonoBehaviour
 			CharacterStatus status = collision.transform.GetComponent<CharacterStatus>();
 			status.mass += 5.0f;
 		}
->>>>>>> 895241d... 2019/10/02の作業分:Assets/Script/Pie.cs
+	}
+
+	public void Throwed(Vector3 direction, Vector3 anglespeed, float speed)
+	{
+		rig.velocity = direction * speed;
+		rig.angularVelocity = anglespeed;
 	}
 
 	public void Throwed(Vector3 direction, float speed)

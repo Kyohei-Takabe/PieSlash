@@ -298,6 +298,10 @@ GameObject:
   - component: {fileID: 6450083969341005629}
   - component: {fileID: 7658638902939137664}
   - component: {fileID: 8432668816230371106}
+  - component: {fileID: 6450083969341005629}
+  - component: {fileID: 7658638902939137664}
+  - component: {fileID: 8432668816230371106}
+  - component: {fileID: 7400902670501206909}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -425,6 +429,23 @@ MonoBehaviour:
   waitTime: 5
   freezeTime: 0.5
   Pond: {fileID: 0}
+--- !u!114 &7400902670501206909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2661511889146427120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fef999d21d3410e870cc7070c6f073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initMass: 60
+  _acceralation: 0.1
+  _damp: 0.3
+  throwSpeed: 10
+  maxPieCream: 100
 --- !u!1 &2661511889593321136
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +641,7 @@ MonoBehaviour:
   OnArea: 0
   PIE: {fileID: 7118633659949848220, guid: 07a26313ace734186a7644b5b6d5c626, type: 3}
   Pond: {fileID: 0}
+  ponds: []
   attackflag: 0
   pieflag: 0
   freezeTime: 1.5

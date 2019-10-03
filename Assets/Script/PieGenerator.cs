@@ -7,10 +7,7 @@ using UnityEngine.SceneManagement;
 public class PieGenerator : MonoBehaviour
 {
 	public GameObject piePrefab;
-<<<<<<< HEAD:Assets/Scripts/PieGenerator.cs
-=======
 	public CharacterStatus status;
->>>>>>> 895241d... 2019/10/02の作業分:Assets/Script/PieGenerator.cs
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -23,7 +20,8 @@ public class PieGenerator : MonoBehaviour
 
 	}
 
-	public GameObject Generate(Transform _transform, Hand hand)
+	//Playerの手元で生成する用
+	public GameObject Generate(Transform _transform, OVRInput.Controller controller)
 	{
 		if(status.pieCream < 5.0f){
 			return null;
@@ -34,26 +32,30 @@ public class PieGenerator : MonoBehaviour
 		Transform trans = _transform;
 		//Vector3 size = _transform.localScale;
 
-		if (hand == Hand.right)
+		if (controller == OVRInput.Controller.RTouch)
 		{
-			trans.Translate(-0.05f, 0, 0);
+			trans.Translate(-0.1f, 0, 0);
+			//trans.Rotate(0,0,180);
 		}
-		if (hand == Hand.left)
+		if (controller == OVRInput.Controller.LTouch)
 		{
-<<<<<<< HEAD:Assets/Scripts/PieGenerator.cs
-			trans.Translate(0.05f, 0, 0);
-=======
 			trans.Translate(0.075f, 0, 0);
 			trans.Rotate(0, 180, 0);
->>>>>>> 895241d... 2019/10/02の作業分:Assets/Script/PieGenerator.cs
 		}
 
-		trans.Rotate(new Vector3(0,0,90));
+		//trans.Rotate(new Vector3(0,0,90));
 
-		GameObject newPie = Instantiate(piePrefab, trans);
+		GameObject newPie = Instantiate(piePrefab, trans.position,trans.rotation);
 
 		newPie.tag = "PlayerPie";
 
+		return newPie;
+	}
+	//Tableの上に生成する用
+	public GameObject Generate(Transform _trans){
+		Transform trans = _trans;
+		trans.Translate(0, piePrefab.transform.position.y, 0);
+		GameObject newPie = Instantiate(piePrefab,trans);
 		return newPie;
 	}
 }
