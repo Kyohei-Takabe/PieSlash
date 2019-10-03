@@ -294,10 +294,6 @@ GameObject:
   - component: {fileID: 2661511889146427131}
   - component: {fileID: 2661511889146427132}
   - component: {fileID: 2661511889146427133}
-  - component: {fileID: 2661511889146427134}
-  - component: {fileID: 6450083969341005629}
-  - component: {fileID: 7658638902939137664}
-  - component: {fileID: 8432668816230371106}
   - component: {fileID: 6450083969341005629}
   - component: {fileID: 7658638902939137664}
   - component: {fileID: 8432668816230371106}
@@ -370,19 +366,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2661511889146427134
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2661511889146427120}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &6450083969341005629
 CharacterController:
   m_ObjectHideFlags: 0
@@ -428,7 +411,6 @@ MonoBehaviour:
   walkSpeed: 1
   waitTime: 5
   freezeTime: 0.5
-  Pond: {fileID: 0}
 --- !u!114 &7400902670501206909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,7 +622,6 @@ MonoBehaviour:
   target: {fileID: 0}
   OnArea: 0
   PIE: {fileID: 7118633659949848220, guid: 07a26313ace734186a7644b5b6d5c626, type: 3}
-  Pond: {fileID: 0}
   ponds: []
   attackflag: 0
   pieflag: 0
