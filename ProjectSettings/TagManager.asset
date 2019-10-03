@@ -9,6 +9,11 @@ TagManager:
   - Cream
   - River
   - Ground
+  - Pond
+  - Hand
+  - PlayerPie
+  - EnemyPie
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -18,13 +23,13 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Pie
+  - Ground
+  - Pond
+  - Cream
+  - Wall
   - 
   - 
   - 

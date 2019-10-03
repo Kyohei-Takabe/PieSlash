@@ -223,7 +223,7 @@ public class OVRPlayerController : MonoBehaviour
 			buttonRotation += RotationRatchet;
 	}
 
-	protected virtual void UpdateController()
+	protected void UpdateController()
 	{
 		if (useProfileData)
 		{
@@ -312,7 +312,7 @@ public class OVRPlayerController : MonoBehaviour
 
 
 
-	public virtual void UpdateMovement()
+	public void UpdateMovement()
 	{
 		if (HaltUpdateMovement)
 			return;

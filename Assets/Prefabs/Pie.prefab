@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7118633659949848210}
   - component: {fileID: 7118633659949848221}
   m_Layer: 0
-  m_Name: Pie 3
-  m_TagString: Untagged
+  m_Name: Pie
+  m_TagString: Pie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7118633659949848220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.075, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 2.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4409116634562992294}
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 2, z: 2}
+  m_Size: {x: 0.05, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7118633659949848211
 Rigidbody:

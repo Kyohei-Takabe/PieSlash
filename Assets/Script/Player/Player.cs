@@ -22,6 +22,7 @@ public class Player : OVRPlayerController
 	public override void Start()
 	{
 		base.Start();
+		status = GetComponent<CharacterStatus>();
 		Acceleration = status.acceralation;
 		Damping = status.damp;
 		if(right!=null){
@@ -54,11 +55,21 @@ public class Player : OVRPlayerController
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if(collision.transform.tag == "Pie"){
+		if(collision.transform.tag == "EnemyPie"){
 			float mass = status.mass;
 			mass += 5.0f+10.0f*(status.comb - 1);
 			status.mass = mass;
 			//status.isHit = true;
+		}
+	}
+
+	private void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if(hit.transform.tag == "EnemyPie")
+		{
+			float mass = status.mass;
+			mass += 5.0f + 10.0f * (status.comb - 1);
+			status.mass = mass;
 		}
 	}
 }

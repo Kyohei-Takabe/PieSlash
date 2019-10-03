@@ -222,6 +222,7 @@ public class OVRGrabber : MonoBehaviour
         Collider closestGrabbableCollider = null;
 
         // Iterate grab candidates and find the closest grabbable candidate
+		// コライダーのなかに入っているオブジェクトのうち最も近いものを選択
 		foreach (OVRGrabbable grabbable in m_grabCandidates.Keys)
         {
             bool canGrab = !(grabbable.isGrabbed && !grabbable.allowOffhandGrab);
@@ -248,11 +249,13 @@ public class OVRGrabber : MonoBehaviour
             }
         }
 
+		//　
         // Disable grab volumes to prevent overlaps
         GrabVolumeEnable(false);
 
         if (closestGrabbable != null)
         {
+			//すでに掴んでいたら掴まないようにする
             if (closestGrabbable.isGrabbed)
             {
                 closestGrabbable.grabbedBy.OffhandGrabbed(closestGrabbable);
