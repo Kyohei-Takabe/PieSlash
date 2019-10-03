@@ -22,7 +22,11 @@ public class SetPosition : MonoBehaviour
         //　ランダムなVector2の値を得る
         var randDestination = Random.insideUnitCircle * 8;
         //　現在地にランダムな位置を足して目的地とする
+<<<<<<< HEAD
         SetDestination(startPosition + new Vector3(randDestination.x, 0, randDestination.y));
+=======
+		SetDestination(transform.position + new Vector3(randDestination.x, 0, randDestination.y));
+>>>>>>> 895241d... 2019/10/02の作業分
     }
 
     //　目的地を設定する

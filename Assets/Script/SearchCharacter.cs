@@ -10,7 +10,12 @@ public class SearchCharacter : MonoBehaviour
     public GameObject Pond;
     public bool attackflag;
     public bool pieflag;
+<<<<<<< HEAD
     public int PIEgaege = 100;
+=======
+	CharacterStatus status;
+
+>>>>>>> 895241d... 2019/10/02の作業分
 
     private GameObject HitRange;
 
@@ -19,26 +24,41 @@ public class SearchCharacter : MonoBehaviour
     //　攻撃した後のフリーズ時間
     [SerializeField]
     private float freezeTime = 1.5f;
+<<<<<<< HEAD
     public float PieSpeed;
 
     void Start()
     {
         moveEnemy = GetComponent<MoveEnemy>();
+=======
+
+    void Start()
+    {
+		status = transform.root.GetComponent<CharacterStatus>();
+		moveEnemy = transform.root.GetComponent<MoveEnemy>();
+>>>>>>> 895241d... 2019/10/02の作業分
         attackflag = true;
         pieflag = true;
         elapsedTime = 0f;
     }
     void Update()
     {
+<<<<<<< HEAD
         if(PIEgaege >= 25)
         {
             this.gameObject.GetComponent<BoxCollider>().size = new Vector3(25, 1, 20);
+=======
+		if(status.pieCream >= 25)
+        {
+            //this.gameObject.GetComponent<BoxCollider>().size = new Vector3(25, 1, 20);
+>>>>>>> 895241d... 2019/10/02の作業分
         }
         if (attackflag == true && OnArea == true)
         {
             //PIE.GetComponent<Rigidbody>().AddForce(target.transform.position.x/10, target.transform.position.y / 10, target.transform.position.z / 10);
             attackflag = false;
         }
+<<<<<<< HEAD
         if (PIEgaege >= 25 && pieflag == true && OnArea == true)
         {
             PIE.transform.position = new Vector3(this.transform.position.x + 0.5f, this.transform.position.y + 1.5f, this.transform.position.z);
@@ -50,6 +70,25 @@ public class SearchCharacter : MonoBehaviour
         if(PIEgaege < 25)
         {
             this.gameObject.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
+=======
+		if (status.pieCream >= 25 && pieflag == true && OnArea == true)
+        {
+			Transform trans = transform;
+			trans.position = new Vector3(this.transform.position.x + 0.5f, this.transform.position.y + 1.5f, this.transform.position.z);
+			trans.Rotate(0,90,0);
+
+			//GameObject PIEs = Instantiate(PIE) as GameObject;
+			GameObject PIEs = Instantiate(PIE,trans);
+			PIEs.tag = "EnemyPie";
+			PIEs.GetComponent<Rigidbody>().velocity = transform.forward * status.throwSpeed;
+            pieflag = false;
+			status.pieCream -= 5;
+
+		}
+		if(status.pieCream < 25)
+        {
+            //this.gameObject.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
+>>>>>>> 895241d... 2019/10/02の作業分
             MoveEnemy.EnemyState state = moveEnemy.GetState();
             if (state == MoveEnemy.EnemyState.Wait || state == MoveEnemy.EnemyState.Walk)
             {
@@ -60,7 +99,11 @@ public class SearchCharacter : MonoBehaviour
     void OnTriggerStay(Collider col)
     {
         //　プレイヤーキャラクターを発見
+<<<<<<< HEAD
         if (col.tag == "Player" && PIEgaege >= 25)
+=======
+		if (col.tag == "Player" && status.pieCream >= 25)
+>>>>>>> 895241d... 2019/10/02の作業分
         {
             elapsedTime += Time.deltaTime;
             if (elapsedTime > freezeTime)
@@ -88,11 +131,20 @@ public class SearchCharacter : MonoBehaviour
             OnArea = false;
         }
     }
+<<<<<<< HEAD
     void OnTriggerEnter(Collider col)
     {        
         if (col.tag == "Pond" && PIEgaege < 25)
         {
             PIEgaege = 100;
+=======
+	//要　変更検討
+    void OnTriggerEnter(Collider col)
+    {        
+		if (col.tag == "Pond" && status.pieCream < 25)
+        {
+			status.pieCream = status.maxPieCream;
+>>>>>>> 895241d... 2019/10/02の作業分
             moveEnemy.SetState(MoveEnemy.EnemyState.Wait);
         }
     }

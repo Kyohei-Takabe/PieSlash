@@ -38,6 +38,11 @@ public class MoveEnemy : MonoBehaviour
     [SerializeField]
     private float freezeTime = 0.5f;
 
+<<<<<<< HEAD
+=======
+	CharacterStatus status;
+
+>>>>>>> 895241d... 2019/10/02の作業分
 
 
     public GameObject Pond;
@@ -52,12 +57,24 @@ public class MoveEnemy : MonoBehaviour
         arrived = false;
         elapsedTime = 0f;
         SetState(EnemyState.Walk);
+<<<<<<< HEAD
+=======
+		status = GetComponent<CharacterStatus>();
+>>>>>>> 895241d... 2019/10/02の作業分
     }
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         //　見回りまたはキャラクターを追いかける状態
         if (state == EnemyState.Walk || state == EnemyState.Chase)
+=======
+		Vector3 localScale = transform.localScale;
+		localScale.x = (status.mass + 40)/100;
+		transform.localScale = localScale;
+		//　見回りまたはキャラクターを追いかける状態
+		if (state == EnemyState.Walk || state == EnemyState.Chase)
+>>>>>>> 895241d... 2019/10/02の作業分
         {
             //　キャラクターを追いかける状態であればキャラクターの目的地を再設定
             if (state == EnemyState.Chase)
@@ -70,7 +87,11 @@ public class MoveEnemy : MonoBehaviour
                 animator.SetFloat("Speed", 2.0f);
                 direction = (setPosition.GetDestination() - transform.position).normalized;
                 transform.LookAt(new Vector3(setPosition.GetDestination().x, transform.position.y, setPosition.GetDestination().z));
+<<<<<<< HEAD
                 velocity = direction * walkSpeed;
+=======
+				velocity = direction * walkSpeed * status.acceralationRate;
+>>>>>>> 895241d... 2019/10/02の作業分
             }
 
             if (state == EnemyState.Walk)
@@ -111,6 +132,14 @@ public class MoveEnemy : MonoBehaviour
                 SetState(EnemyState.Walk);
             }
         }
+<<<<<<< HEAD
+=======
+
+		else if (state == EnemyState.Attack){
+			
+		}
+
+>>>>>>> 895241d... 2019/10/02の作業分
         velocity.y += Physics.gravity.y * Time.deltaTime;
         enemyController.Move(velocity * Time.deltaTime);
     }

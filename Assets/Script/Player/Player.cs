@@ -24,10 +24,19 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	public void Start()
 	{
+<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
 		inputManager = FindObjectOfType<OVRInputManager>();
 		if (inputManager == null)
 		{
 			Debug.Log("inputManager is null");
+=======
+		base.Start();
+		status = GetComponent<CharacterStatus>();
+		Acceleration = status.acceralation;
+		Damping = status.damp;
+		if(right!=null){
+			right.throwSpeed = status.throwSpeed;
+>>>>>>> 895241d... 2019/10/02の作業分:Assets/Script/Player/Player.cs
 		}
 		rig = GetComponent<Rigidbody>();
 
@@ -82,8 +91,28 @@ public class Player : MonoBehaviour
 
 	public void OnCollisionEnter(Collision collision)
 	{
+<<<<<<< HEAD:Assets/Scripts/Player/Player.cs
 
 
 	}
 
+=======
+		if(collision.transform.tag == "EnemyPie"){
+			float mass = status.mass;
+			mass += 5.0f+10.0f*(status.comb - 1);
+			status.mass = mass;
+			//status.isHit = true;
+		}
+	}
+
+	private void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if(hit.transform.tag == "EnemyPie")
+		{
+			float mass = status.mass;
+			mass += 5.0f + 10.0f * (status.comb - 1);
+			status.mass = mass;
+		}
+	}
+>>>>>>> 895241d... 2019/10/02の作業分:Assets/Script/Player/Player.cs
 }

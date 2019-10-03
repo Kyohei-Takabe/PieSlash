@@ -27,11 +27,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 6561914807635506972}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 16.737934, y: 2.58, z: 0.5551396}
   m_LocalScale: {x: 0.5, y: 0.01, z: 0.5}
   m_Children: []
+=======
+  m_GameObject: {fileID: 7118633659949848220}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.5, y: 0.5, z: 0.5}
+  m_Children:
+  - {fileID: 4409116634562992294}
+>>>>>>> 895241d... 2019/10/02の作業分
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
@@ -90,9 +99,14 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
+<<<<<<< HEAD
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
+=======
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 1, z: 1}
+>>>>>>> 895241d... 2019/10/02の作業分
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6895833907981373949
 Rigidbody:

@@ -16,6 +16,7 @@ public class GameStart : MonoBehaviour
     {
 
     }
+<<<<<<< HEAD
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player" )
@@ -23,4 +24,22 @@ public class GameStart : MonoBehaviour
             SceneManager.LoadScene("Main");
         }
     }
+=======
+
+  //  void OnCollisionExit(Collider col)
+  //  {
+		//if (col.tag == "Player" || col.tag == "Pie")
+    //    {
+    //        SceneManager.LoadScene("Play");
+    //    }
+    //}
+
+	private void OnCollisionExit(Collision collision)
+	{
+		if (collision.transform.tag == "Hand" || collision.transform.tag == "PlayerPie")
+		{
+			SceneManager.LoadScene("Play");
+		}
+	}
+>>>>>>> 895241d... 2019/10/02の作業分
 }
