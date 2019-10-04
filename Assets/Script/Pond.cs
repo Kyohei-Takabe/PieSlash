@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pond : MonoBehaviour
 {
 	public bool hasCream { get; set; }
-	private Material material;
+	public Material material;
 	Collider collider;
 	float r, g, b;
 	public float cream { get; set; }
@@ -13,7 +13,7 @@ public class Pond : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		this.material = GetComponentInChildren<Material>();
+		//this.material = GetComponentInChildren<Material>();
 		collider = GetComponent<Collider>();
 		r = material.color.r;
 		g = material.color.g;
@@ -46,17 +46,24 @@ public class Pond : MonoBehaviour
 				if (status.pieCream < 100.0f)
 				{
 					float pieCream = status.pieCream;
-					if (pieCream + 1.0f > 100.0f)
-					{
-						status.pieCream = 100.0f;
-						float mod = 100.0f - pieCream;
-						cream -= mod;
+					if(cream <= 0.5){
+						status.pieCream += cream;
+						cream = 0;
 					}
 
-					else
-					{
-						status.pieCream += 1.0f;
-						cream -= 1.0f;
+					else{
+						if (pieCream + 0.5f > 100.0f)
+						{
+							status.pieCream = 100.0f;
+							float mod = 100.0f - pieCream;
+							cream -= mod;
+						}
+
+						else
+						{
+							status.pieCream += 0.2f;
+							cream -= 0.2f;
+						}
 					}
 				}
 			}
@@ -66,12 +73,12 @@ public class Pond : MonoBehaviour
 	public void VanishMaterial(){
 		if (hasCream)
 		{
-
-			this.material.SetColor("_Color", new Color(r, g, b, 1.0f));
+			material.SetColor("_Color", new Color(r, g, b, 1.0f));
 		}
 		else
 		{
-			this.material.SetColor("_Color", new Color(r, g, b, 0.0f));
+			//material.SetColor("_Color", new Color(r, g, b, 0.0f));
+			material.SetColor("_Color", new Color(r, g, b, 0.0f));
 		}
 	}
 }

@@ -6,11 +6,12 @@
     }
     
   SubShader {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue"="Transparent"}
         LOD 200
         
         CGPROGRAM
         #pragma surface surf Lambert vertex:vert
+        #pragma surface surf Standard alpha:fade
         #pragma target 3.0
 
         sampler2D _MainTex;

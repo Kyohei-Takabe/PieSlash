@@ -8,19 +8,20 @@ public class SearchCharacter : MonoBehaviour
     public Pond[] ponds;
 	CharacterStatus status;
 
-
 	//private GameObject HitRange;
 
 	void Start()
 	{
-		status = transform.root.GetComponent<CharacterStatus>();
-		moveEnemy = transform.root.GetComponent<MoveEnemy>();
+		status = GetComponent<CharacterStatus>();
+		moveEnemy = GetComponent<MoveEnemy>();
+
 	}
 
     void Update()
 	{
 
-		if(status.pieCream < 25)
+
+		if (status.pieCream < 25)
         {
             //this.gameObject.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
             MoveEnemy.EnemyState state = moveEnemy.GetState();
@@ -38,8 +39,13 @@ public class SearchCharacter : MonoBehaviour
 	//playerが範囲内にいるときOnAreaはtrue
     void OnTriggerStay(Collider col)
     {
+
         //　プレイヤーキャラクターを発見
 		//	freezeTiem間隔で攻撃をする
+		if(moveEnemy.GetState() == MoveEnemy.EnemyState.Restore){
+			return;
+		}
+
 		if (col.tag == "Player" && status.pieCream >= 25)
         {
             //　敵キャラクターの状態を取得
@@ -49,7 +55,7 @@ public class SearchCharacter : MonoBehaviour
             {
                 moveEnemy.SetState(MoveEnemy.EnemyState.Chase, col.transform);
             }
-            transform.LookAt(new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z));
+            transform.LookAt(new Vector3(col.transform.position.x, col.transform.position.y, col.transform.position.z));
         }
     }
 
@@ -64,11 +70,11 @@ public class SearchCharacter : MonoBehaviour
 
 
 	//要　変更検討
-    void OnTriggerEnter(Collider col)
+    void OnTiggerEnter(Collider col)
     {        
 		if (col.tag == "Pond" && status.pieCream < 25)
         {
-            moveEnemy.SetState(MoveEnemy.EnemyState.Wait);
+			moveEnemy.SetState(MoveEnemy.EnemyState.Restore);
         }
     }
 }

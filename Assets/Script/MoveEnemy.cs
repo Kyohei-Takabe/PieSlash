@@ -8,10 +8,14 @@ public class MoveEnemy : MonoBehaviour
         Wait,
         Chase,
         Attack,
-        Freeze
+        Freeze,
+		Restore
     };
 
+	public Material material;
+
 	const float GravityPower = 9.8f;
+	const float distThreshold = 7.5f;
 	private CharacterController enemyController;
     private Animator animator;
     //　目的地
@@ -26,7 +30,7 @@ public class MoveEnemy : MonoBehaviour
     //　到着フラグ
     private bool arrived;
     //　SetPositionスクリプト
-    private SetPosition setPosition;
+	public SetPosition setPosition { get; set; }
     //　待ち時間
     [SerializeField]
     private float waitTime = 5f;
@@ -98,7 +102,7 @@ public class MoveEnemy : MonoBehaviour
             else if (state == EnemyState.Chase)
             {
                 //　攻撃する距離だったら攻撃
-				if (Vector3.Distance(transform.position, setPosition.GetDestination()) < 5f && status.pieCream >= 25.0f)
+				if (Vector3.Distance(transform.position, setPosition.GetDestination()) < distThreshold && status.pieCream >= 25.0f)
                 {
                     SetState(EnemyState.Attack);
                 }
@@ -129,20 +133,18 @@ public class MoveEnemy : MonoBehaviour
 
 		else if (state == EnemyState.Attack){
 			if (status.pieCream > 5.0f) {
-				Transform trans = transform;
-				trans.position = new Vector3(this.transform.position.x + 0.5f, this.transform.position.y + 1.5f, this.transform.position.z);
-				trans.Rotate(0, 90, 0);
-
-				//GameObject PIEs = Instantiate(PIE) as GameObject;
-				GameObject PIEs = Instantiate(PIE, trans);
-				PIEs.tag = "EnemyPie";
-				PIEs.GetComponent<Rigidbody>().velocity = transform.forward * status.throwSpeed;
-				status.pieCream -= 5.0f;
-
-				SetState(EnemyState.Freeze);
+				this.throwPie(transform.position,transform.rotation);
 			}
+
 			else{
 				SetState(EnemyState.Walk);
+			}
+		}
+
+		else if(state == EnemyState.Restore){
+			if (status.pieCream == status.maxPieCream)
+			{
+				SetState(MoveEnemy.EnemyState.Walk);
 			}
 		}
 
@@ -162,12 +164,18 @@ public class MoveEnemy : MonoBehaviour
     //　敵キャラクターの状態変更メソッド
     public void SetState(EnemyState tempState, Transform targetObj = null)
     {
+		Color red = new Color(1,0,0,1);
+		Color green = new Color(0,1,0,1);
+		Color blue = new Color(0,0,1,0);
+		Color white = new Color(1, 1, 1, 1);
+		Color defaultColror = material.color;
         state = tempState;
         if (tempState == EnemyState.Walk)
         {
             arrived = false;
             elapsedTime = 0f;
             setPosition.CreateRandomPosition();
+			//material.color = blue;
         }
         else if (tempState == EnemyState.Chase)
         {
@@ -175,19 +183,22 @@ public class MoveEnemy : MonoBehaviour
             arrived = false;
             //　追いかける対象をセット
             playerTransform = targetObj;
-        }
+			//material.color = red;
+		}
         else if (tempState == EnemyState.Wait)
         {
             elapsedTime = 0f;
             arrived = true;
             velocity = Vector3.zero;
             animator.SetFloat("Speed", 0f);
+			material.color = green;
         }
         else if (tempState == EnemyState.Attack)
         {
             velocity = Vector3.zero;
             animator.SetFloat("Speed", 0f);
             animator.SetBool("Attack", true);
+			material.color = red;
         }
         else if (tempState == EnemyState.Freeze)
         {
@@ -195,11 +206,38 @@ public class MoveEnemy : MonoBehaviour
             velocity = Vector3.zero;
             animator.SetFloat("Speed", 0f);
             animator.SetBool("Attack", false);
+			//material.color = white;
         }
+
+		else if(tempState == EnemyState.Restore){
+			elapsedTime = 0f;
+			arrived = true;
+			velocity = Vector3.zero;
+			animator.SetFloat("Speed", 0f);
+			material.color = blue;
+		}
     }
     //　敵キャラクターの状態取得メソッド
     public EnemyState GetState()
     {
         return state;
     }
+
+	private void throwPie(Vector3 _pos, Quaternion _rot){
+
+		Vector3 pos = _pos;
+		Vector3 rot = _rot.eulerAngles;
+		rot.y += 90;
+		Quaternion qua = Quaternion.Euler(rot);
+
+		//GameObject PIEs = Instantiate(PIE) as GameObject;
+		GameObject PIEs = Instantiate(PIE, pos, qua);
+		PIEs.tag = "EnemyPie";
+		PIEs.GetComponent<Rigidbody>().velocity = transform.forward * status.throwSpeed;
+		status.pieCream -= 5.0f;
+
+		SetState(EnemyState.Freeze);
+
+		//return PIEs;
+	}
 }
