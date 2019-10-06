@@ -7,11 +7,13 @@
     
   SubShader {
         Tags { "RenderType"="Transparent" "Queue"="Transparent"}
+        //Tags { "Queue"="Transparent"}
         LOD 200
         
         CGPROGRAM
-        #pragma surface surf Lambert vertex:vert
+        #pragma vertex vert
         #pragma surface surf Standard alpha:fade
+        
         #pragma target 3.0
 
         sampler2D _MainTex;
@@ -33,16 +35,19 @@
         void vert(inout appdata_full v, out Input o )
         {
             UNITY_INITIALIZE_OUTPUT(Input, o);
-            float amp = 0.005*sin(_Time*100+ v.vertex.x * 100) + 0.005*sin(_Time*100 + v.vertex.z * 100) + 0.01*wave(45,v.vertex.xyz);
+            float ampy = 0.05*sin(_Time*100+ v.vertex.x * 100) + 0.05*sin(_Time*100 + v.vertex.z * 100) + 0.1*wave(45,v.vertex.xyz);
             //float amp = 0.01*sin(_Time*100 + v.vertex.x * 100) + 0.01*sin(_Time*100 + v.vertex.z * 100);
-            v.vertex.xyz = float3(v.vertex.x, v.vertex.y+amp, v.vertex.z);            
+            //float ampx = 
+            v.vertex.xyz = float3(v.vertex.x, v.vertex.y+ampy, v.vertex.z);            
             //v.normal = normalize(float3(v.normal.x+offset_, v.normal.y, v.normal.z));
         }
 
-        void surf (Input IN, inout SurfaceOutput o) {
+        void surf (Input IN, inout SurfaceOutputStandard o) {
             fixed4 c = _Color;
-            o.Albedo = c.rgb;
+            //o.Albedo = c.rgb;
+            o.Albedo = fixed4(c.rgb,1);
             o.Alpha = c.a;
+            //o.Alpha = 0.6;
         }
         ENDCG
     }

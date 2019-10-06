@@ -46,13 +46,13 @@ public class Pond : MonoBehaviour
 				if (status.pieCream < 100.0f)
 				{
 					float pieCream = status.pieCream;
-					if(cream <= 0.5){
+					if(cream <= 1.0f){
 						status.pieCream += cream;
 						cream = 0;
 					}
 
 					else{
-						if (pieCream + 0.5f > 100.0f)
+						if (pieCream + 1.0f > 100.0f)
 						{
 							status.pieCream = 100.0f;
 							float mod = 100.0f - pieCream;
@@ -61,8 +61,8 @@ public class Pond : MonoBehaviour
 
 						else
 						{
-							status.pieCream += 0.2f;
-							cream -= 0.2f;
+							status.pieCream += 1.0f;
+							cream -= 1.0f;
 						}
 					}
 				}
@@ -73,12 +73,11 @@ public class Pond : MonoBehaviour
 	public void VanishMaterial(){
 		if (hasCream)
 		{
-			material.SetColor("_Color", new Color(r, g, b, 1.0f));
+			material.color = new Color(r, g, b, 1);
 		}
 		else
 		{
-			//material.SetColor("_Color", new Color(r, g, b, 0.0f));
-			material.SetColor("_Color", new Color(r, g, b, 0.0f));
+			material.color = new Color(r, g, b, 0);
 		}
 	}
 }

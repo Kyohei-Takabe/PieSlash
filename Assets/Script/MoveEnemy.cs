@@ -12,10 +12,10 @@ public class MoveEnemy : MonoBehaviour
 		Restore
     };
 
-	public Material material;
+	//public Material material;
 
 	const float GravityPower = 9.8f;
-	const float distThreshold = 7.5f;
+	public  float AttackThreshold = 7.5f;
 	private CharacterController enemyController;
     private Animator animator;
     //　目的地
@@ -46,7 +46,7 @@ public class MoveEnemy : MonoBehaviour
 
 	CharacterStatus status;
 
-    public GameObject Pond;
+    //public GameObject Pond;
 
 	public GameObject PIE;
 
@@ -102,7 +102,7 @@ public class MoveEnemy : MonoBehaviour
             else if (state == EnemyState.Chase)
             {
                 //　攻撃する距離だったら攻撃
-				if (Vector3.Distance(transform.position, setPosition.GetDestination()) < distThreshold && status.pieCream >= 25.0f)
+				if (Vector3.Distance(transform.position, setPosition.GetDestination()) < AttackThreshold && status.pieCream >= 25.0f)
                 {
                     SetState(EnemyState.Attack);
                 }
@@ -164,11 +164,11 @@ public class MoveEnemy : MonoBehaviour
     //　敵キャラクターの状態変更メソッド
     public void SetState(EnemyState tempState, Transform targetObj = null)
     {
-		Color red = new Color(1,0,0,1);
-		Color green = new Color(0,1,0,1);
-		Color blue = new Color(0,0,1,0);
-		Color white = new Color(1, 1, 1, 1);
-		Color defaultColror = material.color;
+		//Color red = new Color(1,0,0,1);
+		//Color green = new Color(0,1,0,1);
+		//Color blue = new Color(0,0,1,0);
+		//Color white = new Color(1, 1, 1, 1);
+		//Color defaultColror = material.color;
         state = tempState;
         if (tempState == EnemyState.Walk)
         {
@@ -191,14 +191,14 @@ public class MoveEnemy : MonoBehaviour
             arrived = true;
             velocity = Vector3.zero;
             animator.SetFloat("Speed", 0f);
-			material.color = green;
+			//material.color = green;
         }
         else if (tempState == EnemyState.Attack)
         {
             velocity = Vector3.zero;
             animator.SetFloat("Speed", 0f);
             animator.SetBool("Attack", true);
-			material.color = red;
+			//material.color = red;
         }
         else if (tempState == EnemyState.Freeze)
         {
@@ -214,7 +214,7 @@ public class MoveEnemy : MonoBehaviour
 			arrived = true;
 			velocity = Vector3.zero;
 			animator.SetFloat("Speed", 0f);
-			material.color = blue;
+			//material.color = blue;
 		}
     }
     //　敵キャラクターの状態取得メソッド
