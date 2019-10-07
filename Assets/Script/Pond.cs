@@ -10,14 +10,19 @@ public class Pond : MonoBehaviour
 	float r, g, b;
 	public float cream { get; set; }
 
+	private void Awake()
+	{
+		r = material.color.r;
+		g = material.color.g;
+		b = material.color.b;
+	}
+
 	// Start is called before the first frame update
 	void Start()
     {
 		//this.material = GetComponentInChildren<Material>();
 		collider = GetComponent<Collider>();
-		r = material.color.r;
-		g = material.color.g;
-		b = material.color.b;
+
 		hasCream = false;
 		cream = 0.0f;
 	}
