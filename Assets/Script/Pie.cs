@@ -86,7 +86,7 @@ public class Pie : MonoBehaviour
 			AudioSource.PlayClipAtPoint(pieCrash, transform.position);
 			Destroy(this.gameObject);
 			CharacterStatus status = collision.transform.GetComponent<CharacterStatus>();
-			status.mass += 5.0f;
+			status.mass += 20.0f;
 		}
 
 

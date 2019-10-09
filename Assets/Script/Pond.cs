@@ -28,6 +28,7 @@ public class Pond : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		//gameObject.layer = LayerMask.NameToLayer("Pond");
 		//this.material = GetComponentInChildren<Material>();
 		collider = GetComponent<Collider>();
 
@@ -92,7 +93,7 @@ public class Pond : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		gameObject.layer = LayerMask.NameToLayer("Pond");
+		//gameObject.layer = LayerMask.NameToLayer("Pond");
 		if (other.tag == "Player" || other.tag == "Enemy"){
 			effectSource.PlayOneShot(IOHand);
 		}
@@ -100,7 +101,7 @@ public class Pond : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-		gameObject.layer = LayerMask.NameToLayer("Pond");
+
 		if (other.tag == "Player" || other.tag == "Enemy")
 		{
 			effectSource.PlayOneShot(IOHand);
