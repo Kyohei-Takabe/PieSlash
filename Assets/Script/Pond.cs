@@ -92,13 +92,15 @@ public class Pond : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == "Player" || other.tag == "Enemy"){
+		gameObject.layer = LayerMask.NameToLayer("Pond");
+		if (other.tag == "Player" || other.tag == "Enemy"){
 			effectSource.PlayOneShot(IOHand);
 		}
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
+		gameObject.layer = LayerMask.NameToLayer("Pond");
 		if (other.tag == "Player" || other.tag == "Enemy")
 		{
 			effectSource.PlayOneShot(IOHand);
