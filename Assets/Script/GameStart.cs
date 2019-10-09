@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameStart : MonoBehaviour
 {
+	public AudioClip changeSceen;
+	AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
-        
+		source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class GameStart : MonoBehaviour
 	{
 		if (collision.transform.tag == "Hand" || collision.transform.tag == "PlayerPie")
 		{
+			source.PlayOneShot(changeSceen);
 			SceneManager.LoadScene("Play");
 		}
 	}

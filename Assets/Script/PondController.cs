@@ -13,12 +13,13 @@ public class PondController : MonoBehaviour
     void Start()
     {
 		if(SceneManager.GetActiveScene().name == "Play"){
-			nowIndex = Random.Range(0, 5);
+			nowIndex = Random.Range(0, ponds.Length);
 			ponds[nowIndex].cream = 200.0f;
 			ponds[nowIndex].hasCream = true;
 
 			foreach (Pond pond in ponds)
 			{
+				Debug.Log(pond.hasCream);
 				pond.VanishMaterial();
 			}
 		}
@@ -38,7 +39,7 @@ public class PondController : MonoBehaviour
 		if(SceneManager.GetActiveScene().name == "Play"){
 			if (!ponds[nowIndex].hasCream)
 			{
-				int temp = Random.Range(0, 4);
+				int temp = Random.Range(0, ponds.Length - 1);
 				nowIndex = (nowIndex > temp) ? temp : temp++;
 				ponds[nowIndex].hasCream = true;
 				ponds[nowIndex].cream = 200.0f;

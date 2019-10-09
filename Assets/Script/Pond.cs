@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pond : MonoBehaviour
 {
 	public bool hasCream { get; set; }
 	public Material material;
 	Collider collider;
+	AudioSource effectSource;
+	AudioSource BGMSource;
+	public AudioClip pieCreamMax;
+	public AudioClip pieCreamNone;
+	public AudioClip IOHand;
+	public AudioClip popSound;
 	float r, g, b;
 	public float cream { get; set; }
 
@@ -15,6 +22,7 @@ public class Pond : MonoBehaviour
 		r = material.color.r;
 		g = material.color.g;
 		b = material.color.b;
+		hasCream = false;
 	}
 
 	// Start is called before the first frame update
@@ -23,7 +31,9 @@ public class Pond : MonoBehaviour
 		//this.material = GetComponentInChildren<Material>();
 		collider = GetComponent<Collider>();
 
-		hasCream = false;
+		AudioSource[] audioSources = GetComponents<AudioSource>();
+		effectSource = audioSources[0];
+		BGMSource = audioSources[1];
 		cream = 0.0f;
 	}
 
@@ -39,6 +49,8 @@ public class Pond : MonoBehaviour
 		else{
 			collider.isTrigger = false;
 		}
+
+
     }
 	private void OnTriggerStay(Collider other)
 	{
@@ -51,9 +63,11 @@ public class Pond : MonoBehaviour
 				if (status.pieCream < 100.0f)
 				{
 					float pieCream = status.pieCream;
+
 					if(cream <= 1.0f){
 						status.pieCream += cream;
 						cream = 0;
+						effectSource.PlayOneShot(pieCreamNone);
 					}
 
 					else{
@@ -62,6 +76,7 @@ public class Pond : MonoBehaviour
 							status.pieCream = 100.0f;
 							float mod = 100.0f - pieCream;
 							cream -= mod;
+							effectSource.PlayOneShot(pieCreamMax);
 						}
 
 						else
@@ -75,9 +90,28 @@ public class Pond : MonoBehaviour
 		}
 	}
 
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.tag == "Player" || other.tag == "Enemy"){
+			effectSource.PlayOneShot(IOHand);
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.tag == "Player" || other.tag == "Enemy")
+		{
+			effectSource.PlayOneShot(IOHand);
+		}
+	}
+
 	public void VanishMaterial(){
 		if (hasCream)
 		{
+			if(SceneManager.GetActiveScene().name == "Play"){
+				BGMSource.Play();
+				effectSource.PlayOneShot(popSound);
+			}
 			material.color = new Color(r, g, b, 1);
 		}
 		else
@@ -85,4 +119,5 @@ public class Pond : MonoBehaviour
 			material.color = new Color(r, g, b, 0);
 		}
 	}
+
 }

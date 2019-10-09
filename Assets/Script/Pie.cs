@@ -12,6 +12,10 @@ public class Pie : MonoBehaviour
 	protected bool m_grabbedKinematic = false;
 	protected Collider m_grabbedCollider = null;
 	protected PieThrower m_grabbedBy = null;
+	//AudioSource source;
+	[SerializeField]
+	protected AudioClip pieCrash;
+
 
 	public Rigidbody grabbedRigidbody
 	{
@@ -43,6 +47,7 @@ public class Pie : MonoBehaviour
 	void Start()
 	{
 		rig = GetComponent<Rigidbody>();
+		//source = GetComponent<AudioSource>();
 		m_grabbedKinematic = GetComponent<Rigidbody>().isKinematic;
 	}
 
@@ -73,17 +78,18 @@ public class Pie : MonoBehaviour
 		string tag = collision.transform.tag;
 		if (tag == "Ground" || tag == "Wall")
 		{
-			//rig.constraints = RigidbodyConstraints.None;
-			//rig.velocity = Vector3.zero;
-			//rig.constraints = RigidbodyConstraints.FreezePosition;
+			AudioSource.PlayClipAtPoint(pieCrash,transform.position);
 			Destroy(this.gameObject);
 		}
 
 		if((this.tag == "PlayerPie" && tag == "Enemy")||(this.tag == "EnemyPie" && tag == "Player")){
+			AudioSource.PlayClipAtPoint(pieCrash, transform.position);
 			Destroy(this.gameObject);
 			CharacterStatus status = collision.transform.GetComponent<CharacterStatus>();
 			status.mass += 5.0f;
 		}
+
+
 	}
 
 	public void Throwed(Vector3 direction, Vector3 anglespeed, float speed)

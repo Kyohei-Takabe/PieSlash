@@ -16,6 +16,7 @@ public class Player : OVRPlayerController
 	CharacterStatus status;
 	public PieThrower right;
 	public PieThrower left;
+
 	//public HandController controller;
 	//InputManager inputManager;
 
@@ -55,10 +56,13 @@ public class Player : OVRPlayerController
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if(collision.transform.tag == "EnemyPie"){
+		string tag = collision.transform.tag;
+		if (tag == "EnemyPie"){
 			float mass = status.mass;
 			mass += 5.0f+10.0f*(status.comb - 1);
 			status.mass = mass;
+
+
 			//status.isHit = true;
 		}
 	}

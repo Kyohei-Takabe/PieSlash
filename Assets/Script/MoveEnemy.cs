@@ -233,7 +233,7 @@ public class MoveEnemy : MonoBehaviour
 		//GameObject PIEs = Instantiate(PIE) as GameObject;
 		GameObject PIEs = Instantiate(PIE, pos, qua);
 		PIEs.tag = "EnemyPie";
-		PIEs.GetComponent<Rigidbody>().velocity = transform.forward * status.throwSpeed;
+		PIEs.GetComponent<Rigidbody>().velocity = transform.forward * status.throwSpeed* Vector3.Distance(transform.position, setPosition.GetDestination());
 		status.pieCream -= 5.0f;
 
 		SetState(EnemyState.Freeze);
